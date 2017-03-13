@@ -2,8 +2,8 @@
     $userLink = "";
 	$title = __('Add Fellowship');
 	$buttons = array(
-			$this->Form->button('Save', array("class" => "slds-button slds-button--neutral", "onclick" => "submitForm()")),
-			$this->Html->link(__("Cancel"), array('action' => 'index'), array("class" => "slds-button slds-button--neutral"))
+			$this->Form->button('Save', array("class" => "slds-button slds-button--neutral", "id" => "btnSave", "onclick" => "submitForm()")),
+			$this->Html->link(__("Cancel"), array('action' => 'index'), array("class" => "slds-button slds-button--neutral", "id" => "btnCancel"))
 		);
 ?>
 

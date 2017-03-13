@@ -1,9 +1,9 @@
 <?php 
-	$userLink = $this->Html->link(__($user['User']['first_name'] . $user['User']['last_name']), array('controller' => 'users', 'action' => 'view', $user['User']['id']));
+	$userLink = $this->Html->link(__($user['User']['first_name'] .' '. $user['User']['last_name']), array('controller' => 'users', 'action' => 'view', $user['User']['id']));
 	$title = h($user['User']['first_name'] .' '. $user['User']['last_name']);
 	$buttons = array(
-			$this->Form->button('Save', array("class" => "slds-button slds-button--neutral", "onclick" => "submitForm()")),
-			$this->Html->link(__("Cancel"), array('action' => 'view', $user['User']['id']), array("class" => "slds-button slds-button--neutral"))
+			$this->Form->button('Save', array("class" => "slds-button slds-button--neutral", "id" => "btnSave", "onclick" => "submitForm()")),
+			$this->Html->link(__("Cancel"), array('action' => 'view', $user['User']['id']), array("class" => "slds-button slds-button--neutral", "id" => "btnCancel"))
 		);
 ?>
 
@@ -37,10 +37,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6">
+		<!--<div class="col-md-6">
 				<?php echo $this->Form->input('Fellowship', array("class" => "slds-textarea", 
 					"div" => array("class" => "slds-form-element__control"),"label" => array("class" => "slds-form-element__label"))); ?>
-		</div>
+		</div>-->
 		
 		
 

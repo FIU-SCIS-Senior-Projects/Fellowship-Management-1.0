@@ -1,9 +1,9 @@
 <?php 
-	$userLink = $this->Html->link(__($fellowship['User']['first_name'] . $fellowship['User']['last_name']), array('controller' => 'users', 'action' => 'view', $fellowship['User']['id']));
+	$userLink = $this->Html->link(__($fellowship['User']['first_name'] .' '. $fellowship['User']['last_name']), array('controller' => 'users', 'action' => 'view', $fellowship['User']['id']));
 	$title = h($fellowship['Fellowship']['title']);
 	$buttons = array(
-			$this->Form->button('Save', array("class" => "slds-button slds-button--neutral", "onclick" => "submitForm()")),
-			$this->Html->link(__("Cancel"), array('action' => 'view', $fellowship['Fellowship']['id']), array("class" => "slds-button slds-button--neutral"))
+			$this->Form->button('Save', array("class" => "slds-button slds-button--neutral", "id" => "btnSave", "onclick" => "submitForm()")),
+			$this->Html->link(__("Cancel"), array('action' => 'view', $fellowship['Fellowship']['id']), array("class" => "slds-button slds-button--neutral", "id" => "btnCancel"))
 		);
 ?>
 

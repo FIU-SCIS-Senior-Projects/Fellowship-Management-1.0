@@ -2,9 +2,9 @@
 	$userLink = $this->Html->link(__($user['User']['first_name'] .$user['User']['last_name']), array('controller' => 'users', 'action' => 'view', $user['User']['id']));
 	$title = h($user['User']['first_name'] .' ' .$user['User']['last_name']);
 	$buttons = array(
-			$this->Html->link(__("Edit"), array('action' => 'edit', $user['User']['id']), array("class" => "slds-button slds-button--neutral")),
+			$this->Html->link(__("Edit"), array('action' => 'edit', $user['User']['id']), array("class" => "slds-button slds-button--neutral", "id" => "btnEdit",)),
 			$this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id'] ), 
-				array("class" => "slds-button slds-button--neutral", 'confirm' => __('Are you sure you want to delete user %s?', $user['User']['first_name'] .' '. $user['User']['last_name'])))
+				array("class" => "slds-button slds-button--neutral", "id" => "btnDelete", 'confirm' => __('Are you sure you want to delete user %s?', $user['User']['first_name'] .' '. $user['User']['last_name'])))
 		);
 ?>
 
@@ -64,7 +64,7 @@
 	</ul>
 </div>
 
-<div class="related">
+<div class="related form">
 	<h3><?php echo __('Related Fellowships'); ?></h3>
 	<?php if (!empty($user['Fellowship'])): ?>
 	<table cellpadding = "0" cellspacing = "0">

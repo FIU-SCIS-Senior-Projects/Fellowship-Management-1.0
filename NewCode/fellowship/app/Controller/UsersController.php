@@ -78,7 +78,8 @@ class UsersController extends AppController {
 			}
 		}
 		$fellowships = $this->User->Fellowship->find('list');
-		$this->set(compact('fellowships'));
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('fellowships', 'roles'));
 	}
 
 /**

@@ -1,12 +1,12 @@
 <?php
 	$headerCols = array(
-		$this->Paginator->sort('title'),
-		$this->Paginator->sort('description'),
-		$this->Paginator->sort('created'),
-		$this->Paginator->sort('modified'),
-		$this->Paginator->sort('degree_id'),
-		$this->Paginator->sort('discipline_id'),
-		$this->Paginator->sort('elegibility_id')
+		h('title'),
+		h('description'),
+		h('created'),
+		h('modified'),
+		h('degree'),
+		h('discipline'),
+		h('elegibility')
 	);
 
 	foreach($fellowships as $fellowship) {
@@ -35,9 +35,11 @@
 		<div class="col-md-9">
 			<legend>Fellowship Database</legend>
 		</div>
+		<?php if(AuthComponent::user("role_id") == 1) : ?>
 		<div class="col-md-3" style="text-align: right;">
 			<?php echo $this->Html->link(__("Add"), array('action' => 'add'), array("class" => "slds-button slds-button--neutral")); ?>
 		</div>
+		<?php endif;?>
 	</div>
 	<?php echo $this->element('table', array('headerCols' => $headerCols, "rows" => $rows, 'actions' => $actions, 'tableId' => 'myDataTable','escape' => false)); ?>
 </div>

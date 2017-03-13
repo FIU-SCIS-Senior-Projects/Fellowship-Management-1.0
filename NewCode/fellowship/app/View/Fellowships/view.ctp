@@ -2,9 +2,9 @@
 	$userLink = $this->Html->link(__($fellowship['User']['first_name'] . $fellowship['User']['last_name']), array('controller' => 'users', 'action' => 'view', $fellowship['User']['id']));
 	$title = h($fellowship['Fellowship']['title']);
 	$buttons = array(
-			$this->Html->link(__("Edit"), array('action' => 'edit', $fellowship['Fellowship']['id']), array("class" => "slds-button slds-button--neutral")),
+			$this->Html->link(__("Edit"), array('action' => 'edit', $fellowship['Fellowship']['id']), array("class" => "slds-button slds-button--neutral", "id" => "btnEdit")),
 			$this->Form->postLink(__('Delete'), array('action' => 'delete', $fellowship['Fellowship']['id']), 
-				array("class" => "slds-button slds-button--neutral", 'confirm' => __('Are you sure you want to delete # %s?', $fellowship['Fellowship']['id'])))
+				array("class" => "slds-button slds-button--neutral", "id" => "btnDelete", 'confirm' => __('Are you sure you want to delete # %s?', $fellowship['Fellowship']['id'])))
 		);
 ?>
 

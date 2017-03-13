@@ -8,19 +8,15 @@
 
 <?php
 	$headerCols = array(
-		$this->Paginator->sort('username'),
-		$this->Paginator->sort('first_name'),
-		$this->Paginator->sort('last_name'),
-		$this->Paginator->sort('created'),
-		$this->Paginator->sort('modified'),
-		$this->Paginator->sort('role_id')
+		h('full name'),
+		h('created'),
+		h('modified'),
+		h('role')
 	);
 
 	foreach($users as $user) {
 		$rows[] = array(
-			$this->Html->link($user['User']['username'], array('action' => 'view', $user['User']['id'])),
-			h($user['User']['first_name']),
-			h($user['User']['last_name']),
+			$this->Html->link($user['User']['first_name'] .' ' .$user['User']['last_name'], array('action' => 'view', $user['User']['id'])),
 			date('m/d/Y', strtotime($user['User']['created'])),
 			date('m/d/Y', strtotime($user['User']['modified'])),
 			h($user['Role']['name']),
@@ -41,9 +37,11 @@
 		<div class="col-md-9">
 			<legend>User List</legend>
 		</div>
+		<?php if(AuthComponent::user("role_id") == 1) :?>
 		<div class="col-md-3" style="text-align: right;">
 			<?php echo $this->Html->link(__("Add"), array('action' => 'add'), array("class" => "slds-button slds-button--neutral")); ?>
 		</div>
+		<?php endif;?>
 	</div>
 	<?php echo $this->element('table', array('headerCols' => $headerCols, "rows" => $rows, 'actions' => $actions, 'tableId' => 'myDataTable','escape' => false)); ?>
 </div>
