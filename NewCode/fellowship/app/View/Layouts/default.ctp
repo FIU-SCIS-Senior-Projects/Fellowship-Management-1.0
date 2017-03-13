@@ -115,7 +115,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             responsive: true
         });
         
-        if(<?php echo AuthComponent::user("role_id") ?> !== 1)
-            $("#btnSave, #btnEdit, #btnCancel, #btnDelete").attr("disabled", "disabled");
+        // if(<?php echo AuthComponent::user("role_id") ?> != 1)
+        //     $("#btnSave, #btnEdit, #btnCancel, #btnDelete").attr("disabled", "disabled");
     });
 </script>

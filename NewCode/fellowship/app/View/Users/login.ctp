@@ -21,6 +21,7 @@
                             </div>
                         </fieldset>
                     <?= $this->Form->end(__('Login'), array('class'=>'btn btn-lg btn-success btn-block')) ?>
+                    <?php echo $this->Html->link(__("Not registered yet?"), array('action' => 'register')) ?>
                 </div>
             </div>
         </div>

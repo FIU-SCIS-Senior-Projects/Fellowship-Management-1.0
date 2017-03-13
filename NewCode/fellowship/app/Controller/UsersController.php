@@ -17,7 +17,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('add');
+		$this->Auth->allow('register');
 	}
 
 	public function login() {
@@ -83,6 +83,27 @@ class UsersController extends AppController {
 	}
 
 /**
+ * register method
+ *
+ * @return void
+ */
+	public function register() {
+		if ($this->request->is('post')) {
+			$this->User->create();
+			$this->User->data["User"]["role_id"] = 3;
+			if ($this->User->save($this->request->data)) {
+				$this->Flash->success(__('The user has been created.'));
+				return $this->redirect(array('action' => 'login'));
+			} else {
+				$this->Flash->error(__('The user could not be created. Please, try again.'));
+			}
+		}
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
+	}
+
+/**
+
  * edit method
  *
  * @throws NotFoundException
