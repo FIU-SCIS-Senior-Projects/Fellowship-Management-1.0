@@ -4,7 +4,8 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Rule\IsUnique;
 class UsersTable extends Table
 {
 	public function initialize(array $config)
@@ -25,6 +26,17 @@ class UsersTable extends Table
                 'message' => 'Please enter a valid role'
             ]);
     }
+	
+	public function buildRules(RulesChecker $rules)
+	{
+		// A list of fields
+		$rules->add($rules->isUnique(
+			['username'],
+			'This username has already been used.'
+		));
+
+		return $rules;
+	}
 
 }
 ?>
