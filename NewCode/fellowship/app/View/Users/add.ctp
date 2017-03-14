@@ -35,6 +35,10 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6">
+			<?php echo $this->Form->input('address', array("class" => "slds-textarea", "rows" => 5,
+				"div" => array("class" => "slds-form-element__control"),"label" => array("class" => "slds-form-element__label"))); ?>
+		</div>
+		<div class="col-md-6">
 			<?php echo $this->Form->input('role_id', array("class" => "slds-select", 
 					"div" => array("class" => "slds-form-element__control"),"label" => array("class" => "slds-form-element__label"))); ?>
 		</div>

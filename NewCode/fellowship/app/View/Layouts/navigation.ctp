@@ -12,6 +12,8 @@
         ?>
     <ul class="nav navbar-top-links navbar-right">
         <?php if (AuthComponent::user()) : ?>
+            <li><?php echo$this->Html->link("Profile", array("controller" => "users", 'action' => 'profile', AuthComponent::user("id"))) ?></li>
+            
             <li><a href="/Users/logout">Log Out</a></li>
         <?php else : ?>
             <li><a href="/Users/login">Log In</a></li>

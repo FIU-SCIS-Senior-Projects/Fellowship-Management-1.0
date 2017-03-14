@@ -20,16 +20,14 @@
 			date('m/d/Y', strtotime($user['User']['created'])),
 			date('m/d/Y', strtotime($user['User']['modified'])),
 			h($user['Role']['name']),
+			array(
+				$this->Html->link("", array('action' => 'edit', $user['User']['id']), array("class"=>"fa fa-edit", "title" => "Edit")),
+				$this->Form->postLink("",array('action' => 'delete', $user['User']['id']),
+					array("class"=>"fa fa-trash-o", "title" => "Delete", 
+					'confirm' => __('Are you sure you want to delete user %s?', $user['User']['first_name'] .' '. $user['User']['last_name'])))
+			)
 		);
 	}
-
-	$actions = array(
-		$this->Html->link("", array('action' => 'edit', $user['User']['id']), array("class"=>"fa fa-edit", "title" => "Edit")),
-		$this->Form->postLink("",array('action' => 'delete', $user['User']['id']),
-			array("class"=>"fa fa-trash-o", "title" => "Delete", 
-			'confirm' => __('Are you sure you want to delete user %s?', $user['User']['first_name'] .' '. $user['User']['last_name'])))
-	);
-
 ?> 
 
 <div class="users index">
@@ -43,5 +41,5 @@
 		</div>
 		<?php endif;?>
 	</div>
-	<?php echo $this->element('table', array('headerCols' => $headerCols, "rows" => $rows, 'actions' => $actions, 'tableId' => 'myDataTable','escape' => false)); ?>
+	<?php echo $this->element('table', array('headerCols' => $headerCols, "rows" => $rows, /*'actions' => $actions, */'tableId' => 'myDataTable','escape' => false)); ?>
 </div>

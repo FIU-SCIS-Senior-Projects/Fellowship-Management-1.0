@@ -52,19 +52,27 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="slds-form-element slds-has-divider--bottom">
+					<span for="Description" class="slds-form-element__label">Address</span>
+					<div class="slds-form-element__control read-only-view">
+						<span class="slds-form-element__static"><?php echo __($user['User']['address']); ?></span>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Fellowships'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Fellowships'), array('controller' => 'fellowships', 'action' => 'index')); ?> </li>
 	</ul>
 </div>
 
-<div class="related form">
+<!--<div class="related form">
 	<h3><?php echo __('Related Fellowships'); ?></h3>
 	<?php if (!empty($user['Fellowship'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
@@ -99,7 +107,7 @@
 		</tr>
 	<?php endforeach; ?>
 	</table>
-<?php endif; ?>
+<?php endif; ?>-->
 
 	
 </div>

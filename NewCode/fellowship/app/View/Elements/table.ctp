@@ -20,20 +20,21 @@
         <?php foreach ($rows as $rowCols): ?>
             <tr>
                 <?php foreach($rowCols as $rowCell) :?>
-                    <td class="slds-truncate">
-                        <?php 
-                            echo __($rowCell); 
-                        ?>
-                    </td>
+                    <?php if (count($rowCell) > 1) :?>
+                        <?php if (AuthComponent::user() && $isUserAllowed) : ?>
+                            <td class="actions">
+                                <?php foreach ($rowCell as $item): ?>
+                                    <?php echo $item; ?>
+                                <?php endforeach; ?>
+                            </td>
+                        <?php endif; ?>
+                    <?php else :?>
+                        <td class="slds-truncate">
+                            <?php echo __($rowCell); ?>
+                        </td>
+                    <?php endif;?>
+                    
                 <?php endforeach; ?>
-
-                <?php if (AuthComponent::user() && $isUserAllowed) : ?>
-                    <td class="actions">
-                        <?php foreach ($actions as $item): ?>
-                            <?php echo __($item); ?>
-                        <?php endforeach; ?>
-                    </td>
-                <?php endif; ?>
             </tr>
         <?php endforeach; ?>
     </tbody>

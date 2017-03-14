@@ -103,7 +103,33 @@ class UsersController extends AppController {
 	}
 
 /**
+ * profile method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function profile($id = null) {
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->User->save($this->request->data)) {
+				$this->Flash->success(__('Your profile has been updated.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('Your profile could not be updated. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
+		}
 
+		$user = $this->User->find('first', $options);
+		$this->set(compact('user'));
+	}
+
+/**
  * edit method
  *
  * @throws NotFoundException
@@ -131,6 +157,8 @@ class UsersController extends AppController {
 		$fellowships = $this->User->Fellowship->find('list');
 		$this->set(compact('fellowships', 'user', 'roles'));
 	}
+
+	
 
 /**
  * delete method

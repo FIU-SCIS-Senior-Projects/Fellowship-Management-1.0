@@ -4,7 +4,7 @@
 	$buttons = array(
 			$this->Html->link(__("Edit"), array('action' => 'edit', $fellowship['Fellowship']['id']), array("class" => "slds-button slds-button--neutral", "id" => "btnEdit")),
 			$this->Form->postLink(__('Delete'), array('action' => 'delete', $fellowship['Fellowship']['id']), 
-				array("class" => "slds-button slds-button--neutral", "id" => "btnDelete", 'confirm' => __('Are you sure you want to delete # %s?', $fellowship['Fellowship']['id'])))
+				array("class" => "slds-button slds-button--neutral", "id" => "btnDelete", 'confirm' => __('Are you sure you want to delete fellowship %s?', $fellowship['Fellowship']['title'])))
 		);
 ?>
 
@@ -81,9 +81,7 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Fellowship'), array('action' => 'edit', $fellowship['Fellowship']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Fellowship'), array('action' => 'delete', $fellowship['Fellowship']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $fellowship['Fellowship']['id']))); ?> </li>
 		<li><?php echo $this->Html->link(__('List Fellowships'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Fellowship'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 	</ul>
 </div>

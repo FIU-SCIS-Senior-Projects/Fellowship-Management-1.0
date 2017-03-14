@@ -17,17 +17,15 @@
 			date('m/d/Y', strtotime($fellowship['Fellowship']['modified'])),
 			h($fellowship['Degree']['name']),
 			h($fellowship['Discipline']['name']),
-			h($fellowship['Elegibility']['name'])
-		);
-	}
-
-	$actions = array(
+			h($fellowship['Elegibility']['name']),
+			array(
 		$this->Html->link("", array('action' => 'edit', $fellowship['Fellowship']['id']), array("class"=>"fa fa-edit", "title" => "Edit")),
 		$this->Form->postLink("",array('action' => 'delete', $fellowship['Fellowship']['id']),
 			array("class"=>"fa fa-trash-o", "title" => "Delete", 
-			'confirm' => __('Are you sure you want to delete # %s?', $fellowship['Fellowship']['id'])))
-	);
-
+			'confirm' => __('Are you sure you want to delete fellowship %s?', $fellowship['Fellowship']['title'])))
+	)
+		);
+	}
 ?> 
 
 <div class="fellowships index">
@@ -41,17 +39,17 @@
 		</div>
 		<?php endif;?>
 	</div>
-	<?php echo $this->element('table', array('headerCols' => $headerCols, "rows" => $rows, 'actions' => $actions, 'tableId' => 'myDataTable','escape' => false)); ?>
+	<?php echo $this->element('table', array('headerCols' => $headerCols, "rows" => $rows, 'tableId' => 'myDataTable','escape' => false)); ?>
 </div>
 
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Degree'), array('controller' => 'degrees', 'action' => 'add')); ?> </li>
+		<!--<li><?php echo $this->Html->link(__('New Degree'), array('controller' => 'degrees', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Disciplines'), array('controller' => 'disciplines', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Discipline'), array('controller' => 'disciplines', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Elegibilities'), array('controller' => 'elegibilities', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Elegibility'), array('controller' => 'elegibilities', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Elegibility'), array('controller' => 'elegibilities', 'action' => 'add')); ?> </li>-->
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 	</ul>
 </div>
