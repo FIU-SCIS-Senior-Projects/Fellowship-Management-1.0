@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2017 at 07:48 AM
+-- Generation Time: Mar 14, 2017 at 04:14 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -136,16 +136,15 @@ CREATE TABLE `fellowships` (
 INSERT INTO `fellowships` (`id`, `title`, `description`, `created`, `modified`, `degree_id`, `discipline_id`, `elegibility_id`, `user_id`) VALUES
 (5, 'Donald Trump Fellowship', 'Donald Trump Organization is providing this fellowship.', '2017-02-03 20:25:01', '2017-02-12 07:30:43', 3, 2, 1, NULL),
 (6, 'Faculdade do Rio de Jaineiro Intercambio Fellowshi', 'This fellowship is funded by FRJssssd asdasdasdasdasdasdasdasd', '2017-02-03 20:59:45', '2017-03-08 09:35:08', 1, 2, 3, 1),
-(9, 'NYU Partnership with FIU Fellowship', 'This fellowship is funded by NYU and FIU.', '2017-02-07 01:30:56', '2017-02-12 07:28:42', 4, 3, 1, 1),
 (10, 'FIU Research Fellowship', 'This Fellowship is sponsored by the NSF.', '2017-02-12 07:22:18', '2017-02-12 07:22:18', 5, 1, 2, 1),
 (12, 'FIU Fishbowl Fellowship', 'This Fishbowl Fellowship is funded by the Sea World.', '2017-02-12 08:44:16', '2017-02-12 08:44:16', 3, 3, 3, 1),
 (13, 'Marathon Runners Fellowship', 'This fellowship is worth $2.', '2017-02-12 08:46:01', '2017-02-12 08:46:01', 4, 4, 4, 1),
-(14, 'NASDAQ Fellowship', 'This fellowship is worth $400,000.', '2017-02-12 08:47:46', '2017-02-12 08:47:46', 1, 1, 1, 1),
 (16, 'Star of David Fellowship', 'This fellowship is worth $7,000.', '2017-02-12 08:50:23', '2017-02-12 08:50:23', 3, 3, 3, 1),
 (17, 'Clean Energy Fellowship', 'This fellowship is worth $400.', '2017-02-12 08:51:20', '2017-03-08 03:49:04', 1, 1, 1, 1),
-(18, 'Automobile Manufacturer Fellowship', 'Test Descritption', '2017-02-12 08:52:10', '2017-03-09 23:30:07', 3, 3, 5, 10),
+(18, 'Short Video ', 'Short Video description 2', '2017-02-12 08:52:10', '2017-03-14 03:19:18', 4, 6, 2, 10),
 (19, 'Solar Energy Fellowship', 'This fellowship is worth $4,000.', '2017-02-12 08:52:45', '2017-02-12 08:52:45', 1, 2, 2, 1),
-(20, 'Intel Fellowship', '$1,000', '2017-02-12 08:53:21', '2017-02-12 08:53:21', 2, 1, 1, 1);
+(20, 'Intel Fellowship', '$1,000', '2017-02-12 08:53:21', '2017-02-12 08:53:21', 2, 1, 1, 1),
+(21, 'New Ferllowship', 'Testing Adding a new Fellwship', '2017-03-14 03:21:24', '2017-03-14 03:21:24', 5, 4, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -181,25 +180,22 @@ CREATE TABLE `users` (
   `password` varchar(255) DEFAULT NULL,
   `created` datetime DEFAULT '2017-02-07 01:30:56',
   `modified` datetime DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL
+  `role_id` int(11) DEFAULT NULL,
+  `address` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `last_name`, `first_name`, `username`, `password`, `created`, `modified`, `role_id`) VALUES
-(1, 'Alfre2', 'Alfre', 'w', '8166b8dd75c3fce2035cc8bc433cb856a1135601', '2017-02-07 01:30:56', '2017-03-08 08:49:50', 1),
-(7, 'A2', 'A2', 'f', '$2y$10$RQ61QzOVAKbZYnngIrhE7uNWR0zgj/9cDZcF.uvVkCzi8/pe4YSAa', '2017-02-07 01:30:56', NULL, 1),
-(9, 'A3', 'A3', 'admin', '$2y$10$6l2AIivmljyrnme/yL.KEeTibVhJmAyijnJsXynAWjRTP1oC6VpJe', '2017-02-07 01:30:56', NULL, 1),
-(10, 'A4', 'A4', 'qwerty', '$2y$10$ngs9t8TPMZOed6jBQ3qtKeX2y/jH3fLi.m7ch5mTE8lKX6daHNn1W', '2017-02-07 01:30:56', NULL, 2),
-(11, 'A5', 'A5', 'fer', '$2y$10$ng2V9OtO1vOvgyr59V7HmOidHM1NGLx8w.WSDdWZGfjDziMrLcVHK', '2017-02-07 01:30:56', NULL, 2),
-(12, 'A6', 'A6', 'adminDev', '$2y$10$QVE5Eaqj7lVTSzcHWiiMzuBipTtfOjHcR0r143g5kIjZ7z5fAOnC.', '2017-02-07 01:30:56', NULL, 1),
-(13, 'Alfredo', 'Morales', 'al', 'e3f3ce42825094a6c1da1a7519d8a375aa3d638a', '2017-02-07 01:30:56', '2017-03-07 05:06:19', 1),
-(14, 'Aldo123', 'morales', 'al', '8d037ce9faa942e2645777e503c7825f6d1b5511', '2017-02-07 01:30:56', '2017-03-07 05:10:14', 2),
-(15, 'test', 'test', 'a', '0f4d2ab862a03d0b261868f645b93743e926b458', '2017-02-07 01:30:56', '2017-03-07 05:17:18', 2),
-(16, 'ddd', 'ddd', 'd', 'c705862c684f6f2536aaffb88d48923b327af1bc', '2017-02-07 01:30:56', '2017-03-07 05:18:19', 3),
-(17, 'a', 'a', 'a', '0f4d2ab862a03d0b261868f645b93743e926b458', '2017-02-07 01:30:56', '2017-03-07 05:21:31', 3);
+INSERT INTO `users` (`id`, `last_name`, `first_name`, `username`, `password`, `created`, `modified`, `role_id`, `address`) VALUES
+(1, 'Morales', 'Alfredo', 'a', '0f4d2ab862a03d0b261868f645b93743e926b458', '2017-02-07 01:30:56', '2017-03-14 01:54:46', 1, '124 WS 71 Street'),
+(11, 'Fellow', 'Test', 'fe', 'd77de7d3cf5aed181a1243d7a02dc9585b1def6e', '2017-02-07 01:30:56', '2017-03-14 01:55:09', 2, '124 WS 71 Street'),
+(12, 'Dev', 'Admin', 'adminDev', '54d457fc1650b73a10b5bf21007242fd3739fba1', '2017-02-07 01:30:56', '2017-03-14 01:55:43', 1, '124 WS 71 Street'),
+(13, 'Morales', 'Alfredo', 'al', 'f1523b1eefb2d1824541527bb9a3169f899bb5e0', '2017-02-07 01:30:56', '2017-03-14 04:05:50', 1, '250 NE 25th Street\r\nMiami FL 33137'),
+(14, 'Aldo123', 'morales', 'al', '8d037ce9faa942e2645777e503c7825f6d1b5511', '2017-02-07 01:30:56', '2017-03-07 05:10:14', 2, '124 WS 71 Street'),
+(16, 'Regular', 'Test', 'reg', '333c591e2865b5d248bcd6ce31a21f66197a5ef5', '2017-02-07 01:30:56', '2017-03-14 04:00:34', 3, '2005 SW 58 ST\r\nMiami FL 33133'),
+(19, 'Registration', 'Testing', 'test', '5725b1bea9deacf8c28effd61ebcea004ce6c39c', '2017-02-07 01:30:56', '2017-03-14 03:15:11', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -214,22 +210,6 @@ CREATE TABLE `users_fellowships` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_fellowships`
---
-
-INSERT INTO `users_fellowships` (`id`, `user_id`, `fellowship_id`, `created`, `modified`) VALUES
-(1, 7, 5, NULL, NULL),
-(2, 7, 6, NULL, NULL),
-(3, 7, 9, NULL, NULL),
-(4, 7, 16, NULL, NULL),
-(5, 7, 20, NULL, NULL),
-(6, 7, 17, NULL, NULL),
-(7, 7, 10, NULL, NULL),
-(8, 7, 10, NULL, NULL),
-(11, 7, 19, NULL, NULL),
-(12, 7, 14, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -313,7 +293,7 @@ ALTER TABLE `elegibilities`
 -- AUTO_INCREMENT for table `fellowships`
 --
 ALTER TABLE `fellowships`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -323,12 +303,12 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `users_fellowships`
 --
 ALTER TABLE `users_fellowships`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
