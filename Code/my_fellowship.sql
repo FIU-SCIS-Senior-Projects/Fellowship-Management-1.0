@@ -1,37 +1,140 @@
+
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+
 --
--- Host: localhost    Database: my_fellowship
--- ------------------------------------------------------
--- Server version	5.7.14
+-- Host: 127.0.0.1
+-- Generation Time: Feb 21, 2017 at 04:08 AM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `my_fellowship`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `deadlines`
+--
+
+CREATE TABLE `deadlines` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `deadlines`
+--
+
+INSERT INTO `deadlines` (`id`, `name`) VALUES
+(1, 'Fall'),
+(2, 'Spring'),
+(3, 'Summer');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `degrees`
+--
+
+CREATE TABLE `degrees` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `degrees`
+--
+
+INSERT INTO `degrees` (`id`, `name`) VALUES
+(1, 'Master'),
+(2, 'PhD'),
+(3, 'Post-Master\'s'),
+(4, 'Postdoctoral'),
+(5, 'Other');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `disciplines`
+--
+
+CREATE TABLE `disciplines` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `disciplines`
+--
+
+INSERT INTO `disciplines` (`id`, `name`) VALUES
+(1, 'Arts'),
+(2, 'Engineering'),
+(3, 'Humanities'),
+(4, 'Life Sciences'),
+(5, 'Mathematics'),
+(6, 'Physical Sciences'),
+(7, 'Social Sciences'),
+(8, 'Other');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elegibilities`
+--
+
+CREATE TABLE `elegibilities` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `elegibilities`
+--
+
+INSERT INTO `elegibilities` (`id`, `name`) VALUES
+(1, 'U.S. Citizen'),
+(2, 'U.S. Permanent Resident'),
+(3, 'F-1 International Student Visa'),
+(4, 'Financial needs'),
+(5, 'Under-represented minority'),
+(6, 'Women'),
+(7, 'Other');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `fellowships`
 --
 
-DROP TABLE IF EXISTS `fellowships`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fellowships` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(50) DEFAULT NULL,
   `body` text,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
+
   `user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  PRIMARY KEY (`id`),
+  `degree_id` int(11) DEFAULT NULL,
+  `discipline_id` int(11) DEFAULT NULL,
+  `elegibility_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fellowships`
@@ -47,11 +150,10 @@ UNLOCK TABLES;
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `role` varchar(20) DEFAULT NULL,
@@ -62,27 +164,26 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `users`
 --
+
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES (1,'w','$2y$10$32mHS0.BH0UarPN7PRn1Fer173BwKUQDh4oF2JNlzZ88IixEO4qvG','admin','2017-02-07 01:30:56','2017-02-07 01:30:56'),(7,'f','$2y$10$sRys.1gNp8kEDR6Oa4SU9O0CiWS50dmtCXPPqYt5G8l5lQ/5ZA8B2','fellow','2017-02-07 01:30:56',NULL),(9,'admin','$2y$10$6l2AIivmljyrnme/yL.KEeTibVhJmAyijnJsXynAWjRTP1oC6VpJe','admin','2017-02-07 01:30:56',NULL),(11,'fer','$2y$10$ng2V9OtO1vOvgyr59V7HmOidHM1NGLx8w.WSDdWZGfjDziMrLcVHK','admin','2017-02-07 01:30:56',NULL),(12,'awd','$2y$10$.QWF4dD4Gl82t/26wX68h.05IHR0pDrS/LgB0/CGHf987dQy6Zgzq','fellow','2017-02-07 01:30:56',NULL),(14,'john','$2y$10$FYcTguFUighgTy89CZbBxe4ZaDuaDJij78GguHQRUjwQGLkNTzT9O','admin','2017-02-07 01:30:56',NULL),(15,'fellowme','$2y$10$VvgS2J0QnQLZnxM9R5NLVOurx//bTXiq6aUDR30WH5LJFf84a1l3e','fellow','2017-02-07 01:30:56',NULL),(18,'awd2','$2y$10$z7y8kRvpmmeLqtt6fSR0Degpm8KcpEjaGg0Pw82TdatpIE6rrHaEm','fellow','2017-02-07 01:30:56',NULL),(26,'walk','$2y$10$ZokEibm/iqVvH1Z6xTglAeWQCnT14gyqrdQBwPwtnO3hO5UUgI.LK','fellow','2017-02-07 01:30:56',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `users_fellowships`
 --
 
-DROP TABLE IF EXISTS `users_fellowships`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users_fellowships` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) unsigned NOT NULL,
-  `fellowship_id` int(10) unsigned NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `fellowship_id` int(10) UNSIGNED NOT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `u_id` (`user_id`),
@@ -92,23 +193,127 @@ CREATE TABLE `users_fellowships` (
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `users_fellowships`
 --
-
 LOCK TABLES `users_fellowships` WRITE;
-/*!40000 ALTER TABLE `users_fellowships` DISABLE KEYS */;
-INSERT INTO `users_fellowships` VALUES (1,7,5,NULL),(3,7,9,NULL),(4,7,16,NULL),(17,1,9,NULL),(18,1,12,NULL),(19,7,13,NULL),(22,18,5,NULL),(23,12,9,NULL),(24,12,15,NULL),(25,26,32,NULL),(26,26,33,NULL);
-/*!40000 ALTER TABLE `users_fellowships` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+INSERT INTO `users_fellowships` (`id`, `user_id`, `fellowship_id`, `created`, `modified`) VALUES
+(1, 7, 5, NULL, NULL),
+(2, 7, 6, NULL, NULL),
+(3, 7, 9, NULL, NULL),
+(4, 7, 16, NULL, NULL),
+(5, 7, 20, NULL, NULL),
+(6, 7, 17, NULL, NULL),
+(7, 7, 10, NULL, NULL),
+(8, 7, 10, NULL, NULL),
+(11, 7, 19, NULL, NULL),
+(12, 7, 14, NULL, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `deadlines`
+--
+ALTER TABLE `deadlines`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `degrees`
+--
+ALTER TABLE `degrees`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `disciplines`
+--
+ALTER TABLE `disciplines`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `elegibilities`
+--
+ALTER TABLE `elegibilities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fellowships`
+--
+ALTER TABLE `fellowships`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users_fellowships`
+--
+ALTER TABLE `users_fellowships`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `u_id` (`user_id`),
+  ADD KEY `f_id` (`fellowship_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `deadlines`
+--
+ALTER TABLE `deadlines`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `degrees`
+--
+ALTER TABLE `degrees`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `disciplines`
+--
+ALTER TABLE `disciplines`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `elegibilities`
+--
+ALTER TABLE `elegibilities`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `fellowships`
+--
+ALTER TABLE `fellowships`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `users_fellowships`
+--
+ALTER TABLE `users_fellowships`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `users_fellowships`
+--
+ALTER TABLE `users_fellowships`
+  ADD CONSTRAINT `f_for` FOREIGN KEY (`fellowship_id`) REFERENCES `fellowships` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `u_for` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+UNLOCK TABLES;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2017-03-12 20:30:25
+
