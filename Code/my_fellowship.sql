@@ -1,6 +1,10 @@
+
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+
 -- phpMyAdmin SQL Dump
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
+
 --
 -- Host: 127.0.0.1
 -- Generation Time: Feb 21, 2017 at 04:08 AM
@@ -123,6 +127,9 @@ CREATE TABLE `fellowships` (
   `body` text,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
+
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   `degree_id` int(11) DEFAULT NULL,
   `discipline_id` int(11) DEFAULT NULL,
   `elegibility_id` int(11) DEFAULT NULL,
@@ -133,22 +140,11 @@ CREATE TABLE `fellowships` (
 -- Dumping data for table `fellowships`
 --
 
-INSERT INTO `fellowships` (`id`, `title`, `body`, `created`, `modified`, `degree_id`, `discipline_id`, `elegibility_id`, `user_id`) VALUES
-(5, 'Donald Trump Fellowship', 'Donald Trump Organization is providing this fellowship.', '2017-02-03 20:25:01', '2017-02-12 07:30:43', NULL, NULL, NULL, NULL),
-(6, 'Faculdade do Rio de Jaineiro Intercambio Fellowshi', 'This fellowship is funded by FRJ', '2017-02-03 20:59:45', '2017-02-12 07:29:51', NULL, NULL, NULL, NULL),
-(9, 'NYU Partnership with FIU Fellowship', 'This fellowship is funded by NYU and FIU.', '2017-02-07 01:30:56', '2017-02-12 07:28:42', NULL, NULL, NULL, 1),
-(10, 'FIU Research Fellowship', 'This Fellowship is sponsored by the NSF.', '2017-02-12 07:22:18', '2017-02-12 07:22:18', NULL, NULL, NULL, 1),
-(12, 'FIU Fishbowl Fellowship', 'This Fishbowl Fellowship is funded by the Sea World.', '2017-02-12 08:44:16', '2017-02-12 08:44:16', NULL, NULL, NULL, 1),
-(13, 'Marathon Runners Fellowship', 'This fellowship is worth $2.', '2017-02-12 08:46:01', '2017-02-12 08:46:01', NULL, NULL, NULL, 1),
-(14, 'NASDAQ Fellowship', 'This fellowship is worth $400,000.', '2017-02-12 08:47:46', '2017-02-12 08:47:46', NULL, NULL, NULL, 1),
-(15, 'Construction Guild Fellowship', 'This fellowship is worth $4,500.', '2017-02-12 08:49:39', '2017-02-12 08:49:39', NULL, NULL, NULL, 1),
-(16, 'Star of David Fellowship', 'This fellowship is worth $7,000.', '2017-02-12 08:50:23', '2017-02-12 08:50:23', NULL, NULL, NULL, 1),
-(17, 'Clean Energy Fellowship', 'This fellowship is worth $400.', '2017-02-12 08:51:20', '2017-02-12 08:51:20', NULL, NULL, NULL, 1),
-(18, 'Automobile Manufacturer Fellowship', '$200,000', '2017-02-12 08:52:10', '2017-02-12 08:52:10', NULL, NULL, NULL, 1),
-(19, 'Solar Energy Fellowship', 'This fellowship is worth $4,000.', '2017-02-12 08:52:45', '2017-02-12 08:52:45', NULL, NULL, NULL, 1),
-(20, 'Intel Fellowship', '$1,000', '2017-02-12 08:53:21', '2017-02-12 08:53:21', NULL, NULL, NULL, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `fellowships` WRITE;
+/*!40000 ALTER TABLE `fellowships` DISABLE KEYS */;
+INSERT INTO `fellowships` VALUES (5,'Donald Trump Fellowship $4000','Donald Trump Organization is providing this fellowship.','2017-02-03 20:25:01','2017-02-26 19:24:31',NULL),(9,'NYU Partnership with FIU Fellowship','This fellowship is funded by NYU and FIU.','2017-02-07 01:30:56','2017-02-12 07:28:42',1),(12,'FIU Fishbowl Fellowship','This Fishbowl Fellowship is funded by the Sea World.','2017-02-12 08:44:16','2017-02-12 08:44:16',1),(13,'Marathon Runners Fellowship','This fellowship is worth $2.','2017-02-12 08:46:01','2017-02-12 08:46:01',1),(15,'Construction Guild Fellowship','This fellowship is worth $4,500.','2017-02-12 08:49:39','2017-02-12 08:49:39',1),(16,'Star of David Fellowship','This fellowship is worth $7,000.','2017-02-12 08:50:23','2017-02-12 08:50:23',1),(18,'Automobile Manufacturer Fellowship','$200,000','2017-02-12 08:52:10','2017-02-12 08:52:10',1),(20,'Intel Fellowship','$1,000','2017-02-12 08:53:21','2017-02-12 08:53:21',1),(21,'Plant a Tree Foundation Fellowship','$3000','2017-02-13 02:24:41','2017-02-13 02:24:41',1),(22,'Plant Many Trees Fellowship','$3000','2017-02-13 04:13:36','2017-02-13 04:13:36',1),(32,'Fellowship 123','Fellowship 123','2017-03-10 19:15:40','2017-03-10 19:15:40',1),(33,'Invalid Fellowship','Invalid','2017-03-10 20:12:12','2017-03-10 20:12:12',1),(34,'Invalid2','Invalid2','2017-03-10 20:52:36','2017-03-10 20:52:36',1);
+/*!40000 ALTER TABLE `fellowships` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -162,22 +158,23 @@ CREATE TABLE `users` (
   `password` varchar(255) DEFAULT NULL,
   `role` varchar(20) DEFAULT NULL,
   `created` datetime DEFAULT '2017-02-07 01:30:56',
-  `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `last_name`, `first_name`, `username`, `password`, `role`, `created`, `modified`) VALUES
-(1, '', '', 'w', '$2y$10$OlvDMnesNpomBpoh6LNYI.EKl2pJBV4wq/.m/PMPmz6NzgINmA3SO', 'admin', '2017-02-07 01:30:56', '2017-02-07 01:30:56'),
-(7, '', '', 'f', '$2y$10$RQ61QzOVAKbZYnngIrhE7uNWR0zgj/9cDZcF.uvVkCzi8/pe4YSAa', 'fellow', '2017-02-07 01:30:56', NULL),
-(9, '', '', 'admin', '$2y$10$6l2AIivmljyrnme/yL.KEeTibVhJmAyijnJsXynAWjRTP1oC6VpJe', 'admin', '2017-02-07 01:30:56', NULL),
-(10, '', '', 'qwerty', '$2y$10$ngs9t8TPMZOed6jBQ3qtKeX2y/jH3fLi.m7ch5mTE8lKX6daHNn1W', 'fellow', '2017-02-07 01:30:56', NULL),
-(11, '', '', 'fer', '$2y$10$ng2V9OtO1vOvgyr59V7HmOidHM1NGLx8w.WSDdWZGfjDziMrLcVHK', 'admin', '2017-02-07 01:30:56', NULL),
-(12, '', '', 'adminDev', '$2y$10$QVE5Eaqj7lVTSzcHWiiMzuBipTtfOjHcR0r143g5kIjZ7z5fAOnC.', 'admin', '2017-02-07 01:30:56', NULL);
 
--- --------------------------------------------------------
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'w','$2y$10$32mHS0.BH0UarPN7PRn1Fer173BwKUQDh4oF2JNlzZ88IixEO4qvG','admin','2017-02-07 01:30:56','2017-02-07 01:30:56'),(7,'f','$2y$10$sRys.1gNp8kEDR6Oa4SU9O0CiWS50dmtCXPPqYt5G8l5lQ/5ZA8B2','fellow','2017-02-07 01:30:56',NULL),(9,'admin','$2y$10$6l2AIivmljyrnme/yL.KEeTibVhJmAyijnJsXynAWjRTP1oC6VpJe','admin','2017-02-07 01:30:56',NULL),(11,'fer','$2y$10$ng2V9OtO1vOvgyr59V7HmOidHM1NGLx8w.WSDdWZGfjDziMrLcVHK','admin','2017-02-07 01:30:56',NULL),(12,'awd','$2y$10$.QWF4dD4Gl82t/26wX68h.05IHR0pDrS/LgB0/CGHf987dQy6Zgzq','fellow','2017-02-07 01:30:56',NULL),(14,'john','$2y$10$FYcTguFUighgTy89CZbBxe4ZaDuaDJij78GguHQRUjwQGLkNTzT9O','admin','2017-02-07 01:30:56',NULL),(15,'fellowme','$2y$10$VvgS2J0QnQLZnxM9R5NLVOurx//bTXiq6aUDR30WH5LJFf84a1l3e','fellow','2017-02-07 01:30:56',NULL),(18,'awd2','$2y$10$z7y8kRvpmmeLqtt6fSR0Degpm8KcpEjaGg0Pw82TdatpIE6rrHaEm','fellow','2017-02-07 01:30:56',NULL),(26,'walk','$2y$10$ZokEibm/iqVvH1Z6xTglAeWQCnT14gyqrdQBwPwtnO3hO5UUgI.LK','fellow','2017-02-07 01:30:56',NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
 
 --
 -- Table structure for table `users_fellowships`
@@ -188,12 +185,19 @@ CREATE TABLE `users_fellowships` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `fellowship_id` int(10) UNSIGNED NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `u_id` (`user_id`),
+  KEY `f_id` (`fellowship_id`),
+  CONSTRAINT `f_for` FOREIGN KEY (`fellowship_id`) REFERENCES `fellowships` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `u_for` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Dumping data for table `users_fellowships`
 --
+LOCK TABLES `users_fellowships` WRITE;
 
 INSERT INTO `users_fellowships` (`id`, `user_id`, `fellowship_id`, `created`, `modified`) VALUES
 (1, 7, 5, NULL, NULL),
@@ -304,7 +308,12 @@ ALTER TABLE `users_fellowships`
 ALTER TABLE `users_fellowships`
   ADD CONSTRAINT `f_for` FOREIGN KEY (`fellowship_id`) REFERENCES `fellowships` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `u_for` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+UNLOCK TABLES;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-03-12 20:30:25
+
