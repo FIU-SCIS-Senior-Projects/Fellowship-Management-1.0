@@ -97,7 +97,7 @@ class FellowshipsControllerTest extends IntegrationTestCase
 	/*
 		Test case ID: 138
 	*/
-	public function testAddFellowship()
+	public function testAddFellowshipPageLoadID138()
     {
 		/*
         $this->post('/fellowship/app/users/login',

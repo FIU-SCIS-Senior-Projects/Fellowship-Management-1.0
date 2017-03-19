@@ -20,8 +20,8 @@ class FellowshipsController extends AppController
         // cause problems with normal functioning of AuthComponent.
 		
 		//this allows users to delete
-        $this->Auth->allow(['delete']);
-		$this->Auth->deny([]);
+        $this->Auth->allow(['']);
+		$this->Auth->deny(['delete']);
     }
 
     public function index()
@@ -38,8 +38,8 @@ class FellowshipsController extends AppController
 		$articles = $stmt->fetchAll('assoc');
 		//$query = $this->Fellowships->find('all')->contain(['Tags']);
 		/*
-		$table = TableRegistry::get('Users_Fellowships',
-				array('table'=>'Users_Fellowships'));
+		$table = TableRegistry::get('UsersFellowships',
+				array('table'=>'UsersFellowships'));
         $articles = $table->find('all', array(
 			'joins' => array(
 				array(
@@ -47,7 +47,7 @@ class FellowshipsController extends AppController
 					'alias' => 'u',
 					'type' => 'INNER',
 					'conditions' => array(
-						'u.id = Users_Fellowships.user_id'
+						'u.id = UsersFellowships.user_id'
 					)
 				),
 				array(
@@ -55,7 +55,7 @@ class FellowshipsController extends AppController
 					'alias' => 'f',
 					'type' => 'INNER',
 					'conditions' => array(
-						'f.id = Users_Fellowships.fellowship_id'
+						'f.id = UsersFellowships.fellowship_id'
 					)
 				)
 			)
@@ -86,10 +86,14 @@ class FellowshipsController extends AppController
 			return true;
 		}
 
-		// The owner of an article can edit and delete it
-		if (in_array($this->request->action, ['edit', 'delete'])) {
-			$articleId = (int)$this->request->params['pass'][0];
-			if ($this->Fellowships->isOwnedBy($articleId, $user['id'])) {
+		/* The owner of this fellowship can delete it
+		from his/her account
+		*/
+		if (in_array($this->request->action, ['delete'])) {
+			$this->loadModel('UsersFellowships');
+		
+			$fId = (int)$this->request->params['pass'][0];
+			if ($this->UsersFellowships->isOwnedBy($fId, $user['id'])) {
 				return true;
 			}
 		}
@@ -99,13 +103,13 @@ class FellowshipsController extends AppController
 	
 	public function add($id)
     {
-		$this->loadModel('Users_Fellowships');
+		$this->loadModel('UsersFellowships');
 		
-		$article = $this->Users_Fellowships->newEntity();
+		$article = $this->UsersFellowships->newEntity();
 		if ($this->request->is('post')) {
 			$article->fellowship_id = $id;
 			$article->user_id = $this->Auth->user('id');
-			if ($this->Users_Fellowships->save($article)) {
+			if ($this->UsersFellowships->save($article)) {
 				$this->Flash->success(__('Your application has been saved.'));
 				return $this->redirect(['action' => 'index']);
 			}
@@ -117,10 +121,10 @@ class FellowshipsController extends AppController
 	public function delete($id)
 	{
 		$this->request->allowMethod(['post', 'delete']);
-		$this->loadModel('Users_Fellowships');
-		$article = $this->Users_Fellowships->get($id);
+		$this->loadModel('UsersFellowships');
+		$article = $this->UsersFellowships->get($id);
 
-		if($this->Users_Fellowships->delete($article)){
+		if($this->UsersFellowships->delete($article)){
 		$this->Flash->success(__('The article with id: {0} has been deleted.', h($id)));
 			return $this->redirect(['action' => 'index']);
 		}
