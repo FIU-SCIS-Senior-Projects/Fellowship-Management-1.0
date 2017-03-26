@@ -14,7 +14,7 @@
  */
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\PagesController;
+use App\Controller\FellowshipsController;
 use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Network\Request;
@@ -23,9 +23,9 @@ use Cake\TestSuite\IntegrationTestCase;
 use Cake\View\Exception\MissingTemplateException;
 
 /**
- * PagesControllerTest class
+ * FellowshipsControllerTest class
  */
-class PagesControllerTest extends IntegrationTestCase
+class FellowshipsControllerTest extends IntegrationTestCase
 {
     /**
      * testMultipleGet method
@@ -34,8 +34,6 @@ class PagesControllerTest extends IntegrationTestCase
      */
     public function testMultipleGet()
     {
-        $this->get('/');
-        $this->assertResponseOk();
         $this->get('/');
         $this->assertResponseOk();
     }
@@ -47,10 +45,24 @@ class PagesControllerTest extends IntegrationTestCase
      */
     public function testDisplay()
     {
-        $this->get('/pages/home');
+        $this->get('/fellowships');
         $this->assertResponseOk();
-        $this->assertResponseContains('CakePHP');
+        $this->assertResponseContains('Home');
         $this->assertResponseContains('<html>');
+		$this->assertResponseContains('Donald Trump');
+    }
+	
+	 /**
+     * testEntryFromDb method
+     *
+     * @return void
+     */
+    public function testEntryFromDb()
+    {
+        $this->get('/fellowships');
+        $this->assertResponseOk();
+        $this->assertResponseContains('Donald Trump Fellowship');
+        $this->assertResponseContains('NYU Partnership with FIU Fellowship');
     }
 
     /**
@@ -72,15 +84,68 @@ class PagesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testMissingTemplateInDebug()
+    public function testMissingControllerInDebug()
     {
         Configure::write('debug', true);
         $this->get('/pages/not_existing');
 
-        $this->assertResponseFailure();
-        $this->assertResponseContains('Missing Template');
-        $this->assertResponseContains('Stacktrace');
-        $this->assertResponseContains('not_existing.ctp');
+        //$this->assertResponseFailure();
+        $this->assertResponseContains('Missing Controller');
+        $this->assertResponseContains('AppController');
+    }
+	
+	/*
+		Test case ID: 138
+	*/
+	public function testAddFellowshipPageLoadID138()
+    {
+		/*
+        $this->post('/fellowship/app/users/login',
+					array('username'=>'w',
+					      'password'=>'w',
+						  '_method'=>'POST')
+		);
+        $this->assertResponseContains('Users List');
+		$this->get('/admins/fellowships/add');
+        $this->assertResponseContains('Add Fellowship');
+		*/
+		// Set session data
+		$this->session([
+			'Auth' => [
+				'User' => [
+					'id' => 1,
+					'username' => 'w',
+					// other keys.
+				]
+			]
+		]);
+		$this->get('/admins/fellowships/add');
+
+		$this->assertResponseOk();
+		$this->assertResponseContains('Add Fellowship');
+		// Other assertions.
+    }
+	
+	/*
+		Test case ID: 139
+	*/
+	public function testEditFellowshipPageLoadID139()
+    {
+		// Set session data
+		$this->session([
+			'Auth' => [
+				'User' => [
+					'id' => 1,
+					'username' => 'w',
+					'_method'=>'GET'
+				]
+			]
+		]);
+		$this->get('/admins/fellowships/edit/5');
+
+		$this->assertResponseOk();
+		$this->assertResponseContains('Update Fellowship');
+		// Other assertions.
     }
 
     /**
@@ -88,10 +153,12 @@ class PagesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
+	 /*
     public function testDirectoryTraversalProtection()
     {
         $this->get('/pages/../Layout/ajax');
         $this->assertResponseCode(403);
         $this->assertResponseContains('Forbidden');
     }
+	*/
 }

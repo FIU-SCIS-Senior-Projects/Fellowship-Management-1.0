@@ -16,8 +16,8 @@ class UsersController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow(['edit']);
-		$this->Auth->deny(['index', 'view', 'add']);
+        $this->Auth->allow(['']);
+		$this->Auth->deny(['index', 'view', 'delete', 'edit']);
     }
 	
 	public function isAuthorized($user)
@@ -28,16 +28,19 @@ class UsersController extends AppController
 		}
 		
 		
-/*
-		// The owner of an article can edit and delete it
-		if (in_array($this->request->action, ['edit', 'delete'])) {
-			$articleId = (int)$this->request->params['pass'][0];
-			if ($this->Fellowships->isOwnedBy($articleId, $user['id'])) {
+		/*
+		The owner of a profile can edit, 
+		delete, and add only his/her account
+		*/
+		if (in_array($this->request->action, ['view', 'edit', 'delete']))
+		{
+			$editId = (int)$this->request->params['pass'][0];
+			if ($editId == $user['id']) {
 				return true;
+			}else{
+				return false;
 			}
 		}
-*/
-
 		return parent::isAuthorized($user);
 	}
 

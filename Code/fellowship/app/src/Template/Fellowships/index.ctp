@@ -1,10 +1,8 @@
-<!-- File: src/Template/Articles/index.ctp -->
+<!-- File: src/Template/Fellowships/index.ctp -->
 
 <h1>Fellowship Database</h1>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <?= $this->Html->link('Add Fellowship', ['action' => 'add']) ?>
-    </div>
+    
     <!-- /.panel-heading -->
     <div class="panel-body">
         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -13,7 +11,11 @@
                     <th>Id</th>
                     <th>Title</th>
                     <th>Created</th>
-                    <th>Action</th
+					<?php
+					if(isset($cred['role']) && $cred['role']==='admin'){
+						echo '<th>Action</th>';
+					}
+					?>
                 </tr>
             </thead>
             <tbody>
@@ -26,14 +28,20 @@
                     <td>
                         <?= $article->created->format(DATE_RFC850) ?>
                     </td>
-                    <td>
-                        <?= $this->Form->postLink(
+				<?php
+				if(isset($cred['role']) && $cred['role']==='admin'){
+                    echo '<td>';
+                    echo $this->Form->postLink(
                             'Delete',
-                            ['action' => 'delete', $article->id],
-                            ['confirm' => 'Are you sure?'])
-                        ?>
-                        <?= $this->Html->link('Edit', ['action' => 'edit', $article->id]) ?>
-                    </td
+                            ['prefix'=> 'admins', 'action' => 'delete', $article->id],
+                            ['confirm' => 'Are you sure?']);
+                        
+                    echo ' ';
+					echo $this->Html->link('Edit',
+						['prefix'=> 'admins', 'action' => 'edit', $article->id]);
+                    echo '</td>';
+				}
+				?>
                 </tr>
             <?php endforeach; ?>
             </tbody>

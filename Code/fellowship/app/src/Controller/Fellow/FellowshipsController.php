@@ -18,8 +18,10 @@ class FellowshipsController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow([]);
-		$this->Auth->deny([]);
+		
+		//this allows users to delete
+        $this->Auth->allow(['']);
+		$this->Auth->deny(['delete']);
     }
 
     public function index()
@@ -36,8 +38,8 @@ class FellowshipsController extends AppController
 		$articles = $stmt->fetchAll('assoc');
 		//$query = $this->Fellowships->find('all')->contain(['Tags']);
 		/*
-		$table = TableRegistry::get('Users_Fellowships',
-				array('table'=>'Users_Fellowships'));
+		$table = TableRegistry::get('UsersFellowships',
+				array('table'=>'UsersFellowships'));
         $articles = $table->find('all', array(
 			'joins' => array(
 				array(
@@ -45,7 +47,7 @@ class FellowshipsController extends AppController
 					'alias' => 'u',
 					'type' => 'INNER',
 					'conditions' => array(
-						'u.id = Users_Fellowships.user_id'
+						'u.id = UsersFellowships.user_id'
 					)
 				),
 				array(
@@ -53,7 +55,7 @@ class FellowshipsController extends AppController
 					'alias' => 'f',
 					'type' => 'INNER',
 					'conditions' => array(
-						'f.id = Users_Fellowships.fellowship_id'
+						'f.id = UsersFellowships.fellowship_id'
 					)
 				)
 			)
@@ -77,12 +79,6 @@ class FellowshipsController extends AppController
         $this->set(compact('articles'));
     }
 	
-	public function view($id = null)
-    {
-        $article = $this->Fellowships->get($id);
-        $this->set(compact('article'));
-    }
-	
 	public function isAuthorized($user)
 	{
 		// All registered users can add articles
@@ -90,10 +86,14 @@ class FellowshipsController extends AppController
 			return true;
 		}
 
-		// The owner of an article can edit and delete it
-		if (in_array($this->request->action, ['edit', 'delete'])) {
-			$articleId = (int)$this->request->params['pass'][0];
-			if ($this->Fellowships->isOwnedBy($articleId, $user['id'])) {
+		/* The owner of this fellowship can delete it
+		from his/her account
+		*/
+		if (in_array($this->request->action, ['delete'])) {
+			$this->loadModel('UsersFellowships');
+		
+			$fId = (int)$this->request->params['pass'][0];
+			if ($this->UsersFellowships->isOwnedBy($fId, $user['id'])) {
 				return true;
 			}
 		}
@@ -103,58 +103,29 @@ class FellowshipsController extends AppController
 	
 	public function add($id)
     {
-		$table = TableRegistry::get('Users_Fellowships',
-				array('table'=>'Users_Fellowships'));
-		$article = $table->newEntity();
+		$this->loadModel('UsersFellowships');
+		
+		$article = $this->UsersFellowships->newEntity();
 		if ($this->request->is('post')) {
 			$article->fellowship_id = $id;
 			$article->user_id = $this->Auth->user('id');
-			if ($table->save($article)) {
+			if ($this->UsersFellowships->save($article)) {
 				$this->Flash->success(__('Your application has been saved.'));
 				return $this->redirect(['action' => 'index']);
 			}
 			$this->Flash->error(__('Unable to add your article.'));
 		}
-		//$this->set('article', $article);
 
-		// Just added the categories list to be able to choose
-		// one category for an article
-		//$categories = $this->Fellowships->Categories->find('treeList');
-		//$this->set(compact('categories'));
     }
-	
-	public function edit($id = null)
-	{
-		$article = $this->Fellowships->get($id);
-		if ($this->request->is(['post', 'put'])) {
-			$this->Fellowships->patchEntity($article, $this->request->data);
-			if ($this->Fellowships->save($article)) {
-				$this->Flash->success(__('Your article has been updated.'));
-				return $this->redirect(['action' => 'index']);
-			}
-			$this->Flash->error(__('Unable to update your article.'));
-		}
 
-		$this->set('article', $article);
-	}
-	
 	public function delete($id)
 	{
 		$this->request->allowMethod(['post', 'delete']);
+		$this->loadModel('UsersFellowships');
+		$article = $this->UsersFellowships->get($id);
 
-		//$article = $this->Fellowships->get($id);
-		
-		$table = TableRegistry::get('Users_Fellowships', array('table'=>'Users_Fellowships'));
-		$article = $table->get($id);
-		//$query = $query->delete();
-			//->where(['id' => $id]);
-		//$article = $table->get($id);
-		//$entity = $this->Articles->get(2);
-		//$result = $this->Articles->delete($entity);
-		
-		//if ($this->Fellowships->delete($article)) {
-		if($table->delete($article)){
-			$this->Flash->success(__('The article with id: {0} has been deleted.', h($id)));
+		if($this->UsersFellowships->delete($article)){
+		$this->Flash->success(__('The article with id: {0} has been deleted.', h($id)));
 			return $this->redirect(['action' => 'index']);
 		}
 	}
