@@ -12,7 +12,7 @@
                 //$cred_data = AuthComponent::user();
                 //$credname = $cred['username'];
                 if(isset($cred) && $cred['username']!=''){
-                        echo '<span style="font-weight: bolder; color:white;">Hello '.$cred['username'].'.</span>';
+                        echo '<span style="font-weight: bolder; color:black;">Hello '.$cred['username'].'.</span>';
                 }
         ?>
     <ul class="nav navbar-top-links navbar-right">
