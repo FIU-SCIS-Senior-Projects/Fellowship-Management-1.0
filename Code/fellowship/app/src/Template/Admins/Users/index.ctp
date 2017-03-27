@@ -5,8 +5,9 @@
 <table>
     <tr>
         <th>Id</th>
-		<th>Role</th>
-        <th>Username</th>
+		<th><?= $this->Paginator->sort('role', 'Role');?></th>
+        <th><?= $this->Paginator->sort('username', 'Username');?></th>
+		<th><?= $this->Paginator->sort('gpa', 'GPA');?></th>
         <th>Created</th>
 		<th>Action</th>
     </tr>
@@ -20,6 +21,9 @@
         <td>
             <?= $this->Html->link($user->username, ['action' => 'view', $user->id]) ?>
         </td>
+		<td>
+		<?= $user->gpa ?>
+		</td>
         <td>
             <?= $user->created->format(DATE_RFC850) ?>
         </td>
@@ -34,3 +38,16 @@
     </tr>
     <?php endforeach; ?>
 </table>
+<?php
+
+
+echo $this->Paginator->prev(' << ' . __('previous'));
+echo $this->Paginator->numbers();
+
+echo $this->Paginator->next(__('next') . ' >> ');
+echo $this->Paginator->counter(
+    'Page {{page}} of {{pages}}, showing {{current}} records out of
+     {{count}} total, starting on record {{start}}, ending on {{end}}'
+);
+
+?>

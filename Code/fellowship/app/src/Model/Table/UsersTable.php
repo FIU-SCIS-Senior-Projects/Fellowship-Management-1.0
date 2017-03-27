@@ -20,6 +20,9 @@ class UsersTable extends Table
         return $validator
             ->notEmpty('username', 'A username is required')
             ->notEmpty('password', 'A password is required')
+			->greaterThanOrEqual('gpa', 2.0, 'Please enter a GPA between 2.0 and 4.0')
+			->lessThanOrEqual('gpa', 4.0, 'Please enter a GPA between 2.0 and 4.0')
+			
             ->notEmpty('role', 'A role is required')
             ->add('role', 'inList', [
                 'rule' => ['inList', ['fellow', 'admin']],
@@ -34,6 +37,7 @@ class UsersTable extends Table
 			['username'],
 			'This username has already been used.'
 		));
+		
 
 		return $rules;
 	}

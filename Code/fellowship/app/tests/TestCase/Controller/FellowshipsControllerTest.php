@@ -125,6 +125,28 @@ class FellowshipsControllerTest extends IntegrationTestCase
 		$this->assertResponseContains('Add Fellowship');
 		// Other assertions.
     }
+	
+	/*
+		Test case ID: 139
+	*/
+	public function testEditFellowshipPageLoadID139()
+    {
+		// Set session data
+		$this->session([
+			'Auth' => [
+				'User' => [
+					'id' => 1,
+					'username' => 'w',
+					'_method'=>'GET'
+				]
+			]
+		]);
+		$this->get('/admins/fellowships/edit/5');
+
+		$this->assertResponseOk();
+		$this->assertResponseContains('Update Fellowship');
+		// Other assertions.
+    }
 
     /**
      * Test directory traversal protection

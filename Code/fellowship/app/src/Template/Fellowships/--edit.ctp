@@ -1,6 +1,6 @@
-<!-- File: src/Template/Admins/Fellowships/edit.ctp -->
+<!-- File: src/Template/Articles/edit.ctp -->
 
-<h1>Update Fellowship</h1>
+<h1>Edit Fellowship</h1>
 <?php
     echo $this->Form->create($article);
     echo $this->Form->input('title');

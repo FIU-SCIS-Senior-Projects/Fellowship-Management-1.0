@@ -5,23 +5,25 @@ namespace App\Controller;
 
 class FellowshipsController extends AppController
 {
+	/*
 	public $paginate = [
         'limit' => 10,
         'order' => [
             'fellowships.title' => 'asc'
         ]
     ];
-	
+	*/
 	public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('Paginator');
+        //$this->loadComponent('Paginator');
     }
     public function index()
     {
         $articles = $this->Fellowships->find('all');
+        $this->set(compact('articles'));
         //$this->set(compact('articles'));
-		$this->set('articles', $this->paginate($articles));
+		//$this->set('articles', $this->paginate($articles));
 
     }
 	
