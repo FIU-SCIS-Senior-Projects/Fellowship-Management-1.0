@@ -39,6 +39,7 @@ CREATE TABLE `fellowships` (
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +225,7 @@ CREATE TABLE `fellowships` (
   `modified` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +234,8 @@ CREATE TABLE `fellowships` (
 
 LOCK TABLES `fellowships` WRITE;
 /*!40000 ALTER TABLE `fellowships` DISABLE KEYS */;
-INSERT INTO `fellowships` VALUES (5,'Donald Trump Fellowship $5000','Donald Trump Organization is providing this fellowship.','2017-02-03 20:25:01','2017-03-19 21:01:03',NULL),(9,'NYU Partnership with FIU Fellowship','This fellowship is funded by NYU and FIU.','2017-02-07 01:30:56','2017-02-12 07:28:42',1),(12,'FIU Fishbowl Fellowship','This Fishbowl Fellowship is funded by the Sea World.','2017-02-12 08:44:16','2017-02-12 08:44:16',1),(13,'Marathon Runners Fellowship','This fellowship is worth $2.','2017-02-12 08:46:01','2017-02-12 08:46:01',1),(15,'Construction Guild Fellowship','This fellowship is worth $4,500.','2017-02-12 08:49:39','2017-02-12 08:49:39',1),(16,'Star of David Fellowship','This fellowship is worth $7,000.','2017-02-12 08:50:23','2017-02-12 08:50:23',1),(18,'Automobile Manufacturer Fellowship','$200,000','2017-02-12 08:52:10','2017-02-12 08:52:10',1),(20,'Intel Fellowship','$1,000','2017-02-12 08:53:21','2017-02-12 08:53:21',1),(21,'Plant a Tree Foundation Fellowship','$3000','2017-02-13 02:24:41','2017-02-13 02:24:41',1),(22,'Plant Many Trees Fellowship','$3000','2017-02-13 04:13:36','2017-02-13 04:13:36',1),(32,'Fellowship 123','Fellowship 123','2017-03-10 19:15:40','2017-03-10 19:15:40',1),(33,'Invalid Fellowship','Invalid','2017-03-10 20:12:12','2017-03-10 20:12:12',1),(34,'Invalid2','Invalid2','2017-03-10 20:52:36','2017-03-10 20:52:36',1),(35,'think of a new name','new name','2017-03-19 21:01:44','2017-03-19 21:01:44',1);
+
+INSERT INTO `fellowships` VALUES (5,'Donald Trump Fellowship $19500','Donald Trump Organization is providing this fellowship.','2017-02-03 20:25:01','2017-03-26 22:25:07',NULL),(9,'NYU Partnership with FIU Fellowship','This fellowship is funded by NYU and FIU.','2017-02-07 01:30:56','2017-02-12 07:28:42',1),(12,'FIU Fishbowl Fellowship','This Fishbowl Fellowship is funded by the Sea World.','2017-02-12 08:44:16','2017-02-12 08:44:16',1),(13,'Marathon Runners Fellowship','This fellowship is worth $2.','2017-02-12 08:46:01','2017-02-12 08:46:01',1),(15,'Construction Guild Fellowship','This fellowship is worth $4,500.','2017-02-12 08:49:39','2017-02-12 08:49:39',1),(16,'Star of David Fellowship','This fellowship is worth $7,000.','2017-02-12 08:50:23','2017-02-12 08:50:23',1),(18,'Automobile Manufacturer Fellowship','$200,000','2017-02-12 08:52:10','2017-02-12 08:52:10',1),(20,'Intel Fellowship','$1,000','2017-02-12 08:53:21','2017-02-12 08:53:21',1),(21,'Plant a Tree Foundation Fellowship','$3000','2017-02-13 02:24:41','2017-02-13 02:24:41',1),(22,'Plant Many Trees Fellowship','$3000','2017-02-13 04:13:36','2017-02-13 04:13:36',1),(32,'Fellowship 123','Fellowship 123','2017-03-10 19:15:40','2017-03-10 19:15:40',1),(33,'Invalid Fellowship','Invalid','2017-03-10 20:12:12','2017-03-10 20:12:12',1),(34,'Invalid2','Invalid2','2017-03-10 20:52:36','2017-03-10 20:52:36',1),(35,'think of a new name','new name','2017-03-19 21:01:44','2017-03-19 21:01:44',1),(37,'McJob2','Fellowship','2017-03-26 18:01:59','2017-03-26 18:02:16',1),(40,'Heat Basketball Fellowship','Heat Basketball Fellowship','2017-03-27 02:17:58','2017-03-27 02:17:58',1);
 /*!40000 ALTER TABLE `fellowships` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,9 +253,11 @@ CREATE TABLE `users` (
   `role` varchar(20) DEFAULT NULL,
   `created` datetime DEFAULT '2017-02-07 01:30:56',
   `modified` datetime DEFAULT NULL,
+
+  `gpa` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,7 +266,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'w','$2y$10$32mHS0.BH0UarPN7PRn1Fer173BwKUQDh4oF2JNlzZ88IixEO4qvG','admin','2017-02-07 01:30:56','2017-02-07 01:30:56'),(7,'f','$2y$10$sRys.1gNp8kEDR6Oa4SU9O0CiWS50dmtCXPPqYt5G8l5lQ/5ZA8B2','fellow','2017-02-07 01:30:56',NULL),(9,'admin','$2y$10$6l2AIivmljyrnme/yL.KEeTibVhJmAyijnJsXynAWjRTP1oC6VpJe','admin','2017-02-07 01:30:56',NULL),(11,'fer','$2y$10$ng2V9OtO1vOvgyr59V7HmOidHM1NGLx8w.WSDdWZGfjDziMrLcVHK','admin','2017-02-07 01:30:56',NULL),(12,'awd','$2y$10$.QWF4dD4Gl82t/26wX68h.05IHR0pDrS/LgB0/CGHf987dQy6Zgzq','fellow','2017-02-07 01:30:56',NULL),(14,'john','$2y$10$FYcTguFUighgTy89CZbBxe4ZaDuaDJij78GguHQRUjwQGLkNTzT9O','admin','2017-02-07 01:30:56',NULL),(15,'fellowme','$2y$10$VvgS2J0QnQLZnxM9R5NLVOurx//bTXiq6aUDR30WH5LJFf84a1l3e','fellow','2017-02-07 01:30:56',NULL),(18,'awd2','$2y$10$z7y8kRvpmmeLqtt6fSR0Degpm8KcpEjaGg0Pw82TdatpIE6rrHaEm','fellow','2017-02-07 01:30:56',NULL),(26,'walk','$2y$10$ZokEibm/iqVvH1Z6xTglAeWQCnT14gyqrdQBwPwtnO3hO5UUgI.LK','fellow','2017-02-07 01:30:56',NULL),(27,'ww','$2y$10$0Nc3mVvk0SQEkh3X2t1aQ.N63lyDsTmgudYjGPXVFS5GX7OQOFtC.','fellow','2017-02-07 01:30:56',NULL),(28,'thinkofnewuser','$2y$10$WL4rZMYcniBGHX32z0LJJuAymwJZKVQwSu3KwMcNra/7uZB.DNkWG','admin','2017-02-07 01:30:56',NULL),(29,'thinkoffellow','$2y$10$eoD/NjvdZYcbNYxUEU6h0uClXonDx/8RdaZxbpm4yJ.N8DqxSIbxS','fellow','2017-02-07 01:30:56',NULL);
+INSERT INTO `users` VALUES (1,'w','$2y$10$32mHS0.BH0UarPN7PRn1Fer173BwKUQDh4oF2JNlzZ88IixEO4qvG','admin','2017-02-07 01:30:56','2017-02-07 01:30:56',0),(7,'f','$2y$10$sRys.1gNp8kEDR6Oa4SU9O0CiWS50dmtCXPPqYt5G8l5lQ/5ZA8B2','fellow','2017-02-07 01:30:56',NULL,3.4),(9,'admin','$2y$10$6l2AIivmljyrnme/yL.KEeTibVhJmAyijnJsXynAWjRTP1oC6VpJe','admin','2017-02-07 01:30:56',NULL,0),(11,'fer','$2y$10$ng2V9OtO1vOvgyr59V7HmOidHM1NGLx8w.WSDdWZGfjDziMrLcVHK','admin','2017-02-07 01:30:56',NULL,0),(12,'awd','$2y$10$.QWF4dD4Gl82t/26wX68h.05IHR0pDrS/LgB0/CGHf987dQy6Zgzq','fellow','2017-02-07 01:30:56',NULL,3.6),(14,'john','$2y$10$FYcTguFUighgTy89CZbBxe4ZaDuaDJij78GguHQRUjwQGLkNTzT9O','admin','2017-02-07 01:30:56',NULL,0),(15,'fellowme','$2y$10$VvgS2J0QnQLZnxM9R5NLVOurx//bTXiq6aUDR30WH5LJFf84a1l3e','fellow','2017-02-07 01:30:56',NULL,0),(18,'awd2','$2y$10$z7y8kRvpmmeLqtt6fSR0Degpm8KcpEjaGg0Pw82TdatpIE6rrHaEm','fellow','2017-02-07 01:30:56',NULL,0),(26,'walk','$2y$10$ZokEibm/iqVvH1Z6xTglAeWQCnT14gyqrdQBwPwtnO3hO5UUgI.LK','fellow','2017-02-07 01:30:56',NULL,0),(27,'ww','$2y$10$0Nc3mVvk0SQEkh3X2t1aQ.N63lyDsTmgudYjGPXVFS5GX7OQOFtC.','fellow','2017-02-07 01:30:56',NULL,0),(28,'thinkofnewuser','$2y$10$WL4rZMYcniBGHX32z0LJJuAymwJZKVQwSu3KwMcNra/7uZB.DNkWG','admin','2017-02-07 01:30:56',NULL,0),(29,'thinkoffellow','$2y$10$eoD/NjvdZYcbNYxUEU6h0uClXonDx/8RdaZxbpm4yJ.N8DqxSIbxS','fellow','2017-02-07 01:30:56',NULL,0),(30,'asd','$2y$10$pAqYKc8ebkhIYZIEbBs.p.Br1z8xkDaf4JazBucRGliyyqAPCXn3K','fellow','2017-02-07 01:30:56',NULL,0),(31,'dfg','$2y$10$l1Rp4FA64fAeg6mCJEJTmujZ0QqrZYl2i2QQ6R7VFxjYzaQOi524G','fellow','2017-02-07 01:30:56',NULL,0),(33,'gg','$2y$10$p3Ml4ib2qyIE47aIyQ9tEuVuFa1pYyatIk6lA90pRALEVmVvtHVFS','admin','2017-02-07 01:30:56',NULL,0),(34,'fghh','$2y$10$ElTlKkQNOwS1q8QwU6JLWeoIYRW65rclL8dco3iNHiaR2Fyas16j.','fellow','2017-02-07 01:30:56',NULL,0),(35,'fth','$2y$10$Erkh77ll31tgIHOYb0LnQOmh5RUKVexYRCC7nfSp50DscRiMUdUxS','fellow','2017-02-07 01:30:56',NULL,3);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,7 +287,7 @@ CREATE TABLE `users_fellowships` (
   KEY `f_id` (`fellowship_id`),
   CONSTRAINT `f_for` FOREIGN KEY (`fellowship_id`) REFERENCES `fellowships` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `u_for` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,7 +296,7 @@ CREATE TABLE `users_fellowships` (
 
 LOCK TABLES `users_fellowships` WRITE;
 /*!40000 ALTER TABLE `users_fellowships` DISABLE KEYS */;
-INSERT INTO `users_fellowships` VALUES (1,7,5,NULL),(3,7,9,NULL),(4,7,16,NULL),(17,1,9,NULL),(18,1,12,NULL),(19,7,13,NULL),(22,18,5,NULL),(25,26,32,NULL),(26,26,33,NULL),(27,27,5,NULL),(28,27,9,NULL),(29,7,21,NULL),(36,12,5,NULL),(37,12,9,NULL),(38,1,5,NULL),(39,1,13,NULL);
+INSERT INTO `users_fellowships` VALUES (1,7,5,NULL),(3,7,9,NULL),(22,18,5,NULL),(25,26,32,NULL),(26,26,33,NULL),(27,27,5,NULL),(28,27,9,NULL),(36,12,5,NULL),(37,12,9,NULL),(40,31,5,NULL),(43,34,13,NULL),(48,7,37,NULL),(49,7,18,NULL),(50,7,12,NULL),(51,7,40,NULL);
 /*!40000 ALTER TABLE `users_fellowships` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -305,4 +309,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-26 13:50:31
+
+-- Dump completed on 2017-03-27  0:01:23

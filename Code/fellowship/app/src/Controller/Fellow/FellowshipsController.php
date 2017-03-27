@@ -21,7 +21,7 @@ class FellowshipsController extends AppController
 		
 		//this allows users to delete
         $this->Auth->allow(['']);
-		$this->Auth->deny(['delete']);
+		$this->Auth->deny(['delete','index']);
     }
 
     public function index()
@@ -81,8 +81,7 @@ class FellowshipsController extends AppController
 	
 	public function isAuthorized($user)
 	{
-		// All registered users can add articles
-		if ($this->request->action === 'add') {
+		if($this->Auth->user('role')==='fellow'){
 			return true;
 		}
 
@@ -94,6 +93,8 @@ class FellowshipsController extends AppController
 		
 			$fId = (int)$this->request->params['pass'][0];
 			if ($this->UsersFellowships->isOwnedBy($fId, $user['id'])) {
+				return true;
+			} else if($this->Auth->user('role')==='admin'){
 				return true;
 			}
 		}
@@ -126,7 +127,7 @@ class FellowshipsController extends AppController
 
 		if($this->UsersFellowships->delete($article)){
 		$this->Flash->success(__('The article with id: {0} has been deleted.', h($id)));
-			return $this->redirect(['action' => 'index']);
+			return $this->redirect($this->referer());
 		}
 	}
 }

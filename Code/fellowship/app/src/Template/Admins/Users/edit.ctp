@@ -5,6 +5,11 @@
     echo $this->Form->create($user);
     echo $this->Form->input('username');
     echo $this->Form->input('password');
+	echo $this->Form->input('gpa',
+			['type'=>'number',
+			'step'=>'0.01',
+			'min'=>'2.0',
+			'max'=>'4.0']);
     echo $this->Form->button(__('Update User'));
     echo $this->Form->end();
 ?>
@@ -32,7 +37,7 @@
 		<td>
 			<?= $this->Form->postLink(
                 'Delete',
-                ['action' => 'delete', $article['id']],
+                ['prefix'=>'fellow', 'controller'=>'fellowships', 'action' => 'delete', $article['uf_id']],
                 ['confirm' => 'Are you sure?'])
             ?>
         </td>
