@@ -11,6 +11,11 @@ use Cake\Datasource\ConnectionManager;
 
 class FellowshipsController extends AppController
 {
+	public function initialize()
+    {
+        parent::initialize();
+	}
+	
 	public function beforeFilter(Event $event)
     {
 
@@ -21,7 +26,7 @@ class FellowshipsController extends AppController
 		
 		//this allows users to delete
         $this->Auth->allow(['']);
-		$this->Auth->deny(['delete','index']);
+		$this->Auth->deny(['delete','index', 'add']);
     }
 
     public function index()
@@ -81,12 +86,10 @@ class FellowshipsController extends AppController
 	
 	public function isAuthorized($user)
 	{
-		if($this->Auth->user('role')==='fellow'){
-			return true;
-		}
+		
 
-		/* The owner of this fellowship can delete it
-		from his/her account
+		/* The owner of this fellowship and admin can delete it
+		from his/her account.
 		*/
 		if (in_array($this->request->action, ['delete'])) {
 			$this->loadModel('UsersFellowships');
@@ -94,7 +97,9 @@ class FellowshipsController extends AppController
 			$fId = (int)$this->request->params['pass'][0];
 			if ($this->UsersFellowships->isOwnedBy($fId, $user['id'])) {
 				return true;
-			} else if($this->Auth->user('role')==='admin'){
+			}
+		}else{
+			if($this->Auth->user('role')==='fellow'){
 				return true;
 			}
 		}
@@ -121,7 +126,7 @@ class FellowshipsController extends AppController
 
 	public function delete($id)
 	{
-		$this->request->allowMethod(['post', 'delete']);
+		//$this->request->allowMethod(['post', 'delete']);
 		$this->loadModel('UsersFellowships');
 		$article = $this->UsersFellowships->get($id);
 

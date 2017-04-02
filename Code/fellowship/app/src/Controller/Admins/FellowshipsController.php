@@ -8,6 +8,10 @@ use Cake\Event\Event;
 
 class FellowshipsController extends AppController
 {
+	public function initialize()
+    {
+        parent::initialize();
+	}
 	public function beforeFilter(Event $event)
     {
 
@@ -16,7 +20,7 @@ class FellowshipsController extends AppController
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
         $this->Auth->allow([]);
-		$this->Auth->deny(['index','view']);
+		$this->Auth->deny(['index', 'view', 'add', 'edit', 'delete']);
     }
 
     public function index()
@@ -33,17 +37,12 @@ class FellowshipsController extends AppController
 	
 	public function isAuthorized($user)
 	{
-		// All registered users can add articles
-		if ($this->request->action === 'add') {
+		if($this->Auth->user('role')==='admin'){
 			return true;
-		}
-
-		// The owner of an article can edit and delete it
-		if (in_array($this->request->action, ['edit', 'delete'])) {
-			$articleId = (int)$this->request->params['pass'][0];
-			if ($this->Fellowships->isOwnedBy($articleId, $user['id'])) {
-				return true;
-			}
+		}else if($this->Auth->user('role')==='fellow'){
+			return false;
+		} else{
+			return false;
 		}
 
 		return parent::isAuthorized($user);
@@ -90,7 +89,6 @@ class FellowshipsController extends AppController
 	
 	public function delete($id)
 	{
-		$this->request->allowMethod(['post', 'delete']);
 
 		$article = $this->Fellowships->get($id);
 		if ($this->Fellowships->delete($article)) {

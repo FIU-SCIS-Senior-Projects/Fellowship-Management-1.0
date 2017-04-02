@@ -4,7 +4,7 @@
 <?= $this->Html->link('Add User', ['action' => 'add']) ?>
 <table>
     <tr>
-        <th>Id</th>
+        <th><?= $this->Paginator->sort('id', 'Id');?></th>
 		<th><?= $this->Paginator->sort('role', 'Role');?></th>
         <th><?= $this->Paginator->sort('username', 'Username');?></th>
 		<th><?= $this->Paginator->sort('gpa', 'GPA');?></th>

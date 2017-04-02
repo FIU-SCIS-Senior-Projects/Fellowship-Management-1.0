@@ -25,11 +25,9 @@ class UsersController extends AppController
     {
 
         parent::beforeFilter($event);
-        // Allow users to register and logout.
-        // You should not add the "login" action to allow list. Doing so would
-        // cause problems with normal functioning of AuthComponent.
+
         $this->Auth->allow([]);
-		$this->Auth->deny(['index', 'view', 'add', 'edit']);
+		$this->Auth->deny(['index', 'view', 'add', 'edit', 'delete']);
     }
 
     public function logout()
@@ -43,9 +41,9 @@ class UsersController extends AppController
 		if($this->Auth->user('role')==='admin'){
 			return true;
 		}else if($this->Auth->user('role')==='fellow'){
-			return $this->redirect(['prefix'=>'fellow', 'controller'=>'fellowships', 'action' => 'index']);
+			return false;
 		} else{
-			return $this->redirect(['prefix'=>'', 'controller'=>'fellowships', 'action' => 'index']);
+			return false;
 		}
 
 		return parent::isAuthorized($user);
@@ -109,7 +107,6 @@ class UsersController extends AppController
 		
 	public function delete($id)
 	{
-		$this->request->allowMethod(['post', 'delete']);
 
 		$user = $this->Users->get($id);
 		if ($this->Users->delete($user)) {

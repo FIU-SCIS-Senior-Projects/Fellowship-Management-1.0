@@ -1,5 +1,5 @@
 <!-- File: src/Template/Fellowships/index.ctp -->
-
+<?= $this->Flash->render('auth') ?>
 <h1>Fellowship Database</h1>
 <div class="panel panel-default">
     

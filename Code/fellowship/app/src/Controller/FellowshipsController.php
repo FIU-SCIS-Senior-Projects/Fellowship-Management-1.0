@@ -16,6 +16,7 @@ class FellowshipsController extends AppController
 	public function initialize()
     {
         parent::initialize();
+		$this->Auth->allow(['index', 'view']);
         //$this->loadComponent('Paginator');
     }
     public function index()
@@ -32,7 +33,7 @@ class FellowshipsController extends AppController
         $article = $this->Fellowships->get($id);
         $this->set(compact('article'));
     }
-	
+/*	Commented out on 3-31-2017
 	public function isAuthorized($user)
 	{
 		// All registered users can add articles
@@ -92,7 +93,7 @@ class FellowshipsController extends AppController
 	
 	public function delete($id)
 	{
-		$this->request->allowMethod(['post', 'delete']);
+		//$this->request->allowMethod(['post', 'delete']);
 
 		$article = $this->Fellowships->get($id);
 		if ($this->Fellowships->delete($article)) {
@@ -100,5 +101,6 @@ class FellowshipsController extends AppController
 			return $this->redirect(['action' => 'index']);
 		}
 	}
+	*/
 }
 ?>

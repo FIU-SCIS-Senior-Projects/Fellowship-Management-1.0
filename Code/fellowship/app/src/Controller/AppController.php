@@ -45,12 +45,23 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 		$this->loadComponent('Auth', [
 			'authorize' => ['Controller'], // Added this line
+			'loginAction' => [
+				'prefix' => false,
+				'controller'=>'Users',
+				'action'=>'login'
+			],
             'loginRedirect' => [
-				//'controller' => 'Fellowships',//was
+				'prefix' => false,
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'logoutRedirect' => [
+				'prefix' => false,
                 'controller' => 'Fellowships',
                 'action' => 'index'
             ],
-            'logoutRedirect' => [
+			'unauthorizedRedirect' => [
+				'prefix' => false,
                 'controller' => 'Fellowships',
                 'action' => 'index'
             ]
@@ -65,7 +76,7 @@ class AppController extends Controller
     }
 	public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['index', 'view']);
+        //$this->Auth->allow(['index', 'view']);
 		
 		$this->loadModel('Users');
 		if(isset($this->Auth->user()['id']) ){

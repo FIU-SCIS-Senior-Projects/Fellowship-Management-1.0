@@ -11,9 +11,9 @@
 			'step'=>'0.01',
 			'min'=>'2.0',
 			'max'=>'4.0']) ?>
-        <?= $this->Form->input('role', [
+        <?php /*echo $this->Form->input('role', [
             'options' => ['fellow' => 'Fellow', 'admin' => 'Admin']
-        ]) ?>
+        ]); */?>
    </fieldset>
 <?= $this->Form->button(__('Submit')); ?>
 <?= $this->Form->end() ?>
