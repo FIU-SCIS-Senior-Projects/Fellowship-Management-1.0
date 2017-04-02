@@ -5,23 +5,26 @@ namespace App\Controller;
 
 class FellowshipsController extends AppController
 {
+	/*
 	public $paginate = [
         'limit' => 10,
         'order' => [
             'fellowships.title' => 'asc'
         ]
     ];
-	
+	*/
 	public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('Paginator');
+		$this->Auth->allow(['index', 'view']);
+        //$this->loadComponent('Paginator');
     }
     public function index()
     {
         $articles = $this->Fellowships->find('all');
+        $this->set(compact('articles'));
         //$this->set(compact('articles'));
-		$this->set('articles', $this->paginate($articles));
+		//$this->set('articles', $this->paginate($articles));
 
     }
 	
@@ -30,7 +33,7 @@ class FellowshipsController extends AppController
         $article = $this->Fellowships->get($id);
         $this->set(compact('article'));
     }
-	
+/*	Commented out on 3-31-2017
 	public function isAuthorized($user)
 	{
 		// All registered users can add articles
@@ -90,7 +93,7 @@ class FellowshipsController extends AppController
 	
 	public function delete($id)
 	{
-		$this->request->allowMethod(['post', 'delete']);
+		//$this->request->allowMethod(['post', 'delete']);
 
 		$article = $this->Fellowships->get($id);
 		if ($this->Fellowships->delete($article)) {
@@ -98,5 +101,6 @@ class FellowshipsController extends AppController
 			return $this->redirect(['action' => 'index']);
 		}
 	}
+	*/
 }
 ?>

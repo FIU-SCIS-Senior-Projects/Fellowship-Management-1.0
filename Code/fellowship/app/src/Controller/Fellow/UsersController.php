@@ -8,6 +8,10 @@ use Cake\Event\Event;
 
 class UsersController extends AppController
 {
+	public function initialize()
+    {
+        parent::initialize();
+	}
 
     public function beforeFilter(Event $event)
     {
@@ -17,16 +21,16 @@ class UsersController extends AppController
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
         $this->Auth->allow(['']);
-		$this->Auth->deny(['index', 'view', 'delete', 'edit']);
+		$this->Auth->deny(['index', 'view', 'edit', 'delete']);
     }
 	
 	public function isAuthorized($user)
 	{
 		
-		if ($this->request->action === 'index') {
+		if ($this->Auth->user('role')==='fellow' &&
+			$this->request->action === 'index') {
 			return true;
 		}
-		
 		
 		/*
 		The owner of a profile can edit, 
@@ -46,8 +50,11 @@ class UsersController extends AppController
 
     public function index()
     {
+		return $this->redirect(['prefix'=>'fellow', 'controller'=>'Fellowships', 'action' => 'index']);
     }
 
+	//Not used in website, but in case it is needed in
+	//the future then it is here.
     public function view($id)
     {
         $user = $this->Users->get($id);
@@ -69,10 +76,12 @@ class UsersController extends AppController
 
 		$this->set('user', $user);
 	}
-		
+	
+	//Not used in website, but in case it is needed in
+	//the future then it is here.
 	public function delete($id)
 	{
-		$this->request->allowMethod(['post', 'delete']);
+		//$this->request->allowMethod(['post', 'delete']);
 
 		$user = $this->Users->get($id);
 		if ($this->Users->delete($user)) {

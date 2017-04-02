@@ -115,7 +115,7 @@ class FellowshipsControllerTest extends IntegrationTestCase
 				'User' => [
 					'id' => 1,
 					'username' => 'w',
-					// other keys.
+					'role'=>'admin',
 				]
 			]
 		]);
@@ -137,8 +137,8 @@ class FellowshipsControllerTest extends IntegrationTestCase
 				'User' => [
 					'id' => 1,
 					'username' => 'w',
-					'_method'=>'GET'
-				]
+					'role'=>'admin',					
+					]
 			]
 		]);
 		$this->get('/admins/fellowships/edit/5');
@@ -147,6 +147,28 @@ class FellowshipsControllerTest extends IntegrationTestCase
 		$this->assertResponseContains('Update Fellowship');
 		// Other assertions.
     }
+	
+	/*
+		Test case ID: 146
+	*/
+	public function testRemoveFellowshipPageLoadID146()
+    {
+		// Set session data
+		$this->enableCsrfToken();
+		$this->enableSecurityToken();
+		$this->session([
+			'Auth' => [
+				'User' => [
+					'id' => 1,
+					'username' => 'w',
+					'role'=>'admin',
+				]
+			]
+		]);
+		$this->get('/admins/fellowships/');
+		$this->assertResponseContains('/admins/fellowships/delete/');
+		$this->assertResponseOk();
+	}
 
     /**
      * Test directory traversal protection
