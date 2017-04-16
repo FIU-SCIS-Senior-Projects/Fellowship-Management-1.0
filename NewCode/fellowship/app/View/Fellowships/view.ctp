@@ -1,5 +1,4 @@
 <?php 
-	$userLink = $this->Html->link(__($fellowship['User']['first_name'] . $fellowship['User']['last_name']), array('controller' => 'users', 'action' => 'view', $fellowship['User']['id']));
 	$title = h($fellowship['Fellowship']['title']);
 	$buttons = array(
 			$this->Html->link(__("Edit"), array('action' => 'edit', $fellowship['Fellowship']['id']), array("class" => "slds-button slds-button--neutral", "id" => "btnEdit")),
@@ -9,7 +8,7 @@
 ?>
 
 <div class="fellowships view">
-	<?php echo $this->element('page_header', array('userLink' => $userLink, "title" => $title, 'buttons' => $buttons, 'escape' => false)); ?>
+	<?php echo $this->element('page_header', array("title" => $title, 'buttons' => $buttons, 'escape' => false)); ?>
 
 	<div class="main-screen">
 		<div class="row">

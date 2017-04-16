@@ -1,5 +1,4 @@
 <?php 
-	$userLink = $this->Html->link(__($user['User']['first_name'] .$user['User']['last_name']), array('controller' => 'users', 'action' => 'view', $user['User']['id']));
 	$title = h($user['User']['first_name'] .' ' .$user['User']['last_name']);
 	$buttons = array(
 			$this->Html->link(__("Edit"), array('action' => 'edit', $user['User']['id']), array("class" => "slds-button slds-button--neutral", "id" => "btnEdit",)),
@@ -9,7 +8,7 @@
 ?>
 
 <div class="users view">
-	<?php echo $this->element('page_header', array('userLink' => $userLink, "title" => $title, 'buttons' => $buttons, 'escape' => false)); ?>
+	<?php echo $this->element('page_header', array("title" => $title, 'buttons' => $buttons, 'escape' => false)); ?>
 
 	<div class="main-screen">
 		<div class="row">

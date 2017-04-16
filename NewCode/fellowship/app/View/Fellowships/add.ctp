@@ -1,5 +1,4 @@
 <?php 
-    $userLink = "";
 	$title = __('Add Fellowship');
 	$buttons = array(
 			$this->Form->button('Save', array("class" => "slds-button slds-button--neutral", "id" => "btnSave", "onclick" => "submitForm()")),
@@ -9,7 +8,7 @@
 
 <div class="fellowships form">
 	
-	<?php echo $this->element('page_header', array('userLink' => $userLink, "title" => $title, 'buttons' => $buttons, 'escape' => false)); ?>
+	<?php echo $this->element('page_header', array("title" => $title, 'buttons' => $buttons, 'escape' => false)); ?>
 
 	<?php echo $this->Form->create('Fellowship', array("class" => "form-horizontal", "role" => "form")); ?>
 
