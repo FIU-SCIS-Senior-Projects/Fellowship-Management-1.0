@@ -25,6 +25,10 @@
                                 <?php echo $this->Form->input('password', array("class" => "slds-input", 
                                     "div" => array("class" => "slds-form-element__control"),'label' => false, 'placeholder'=>'Password')); ?>
                             </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('gpa', array("class" => "slds-input", "type"=>"number", "step"=>"0.01", "min"=>"2.0", "max"=>"4.0",
+                                    "div" => array("class" => "slds-form-element__control"),'label' => false, 'placeholder'=>'GPA')); ?>
+                            </div>
                         </fieldset>
                     <?= $this->Form->end(__('Register'), array('class'=>'btn btn-lg btn-success btn-block')) ?>
                 </div>

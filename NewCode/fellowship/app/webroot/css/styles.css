@@ -368,3 +368,7 @@ ul.slds-lookup__list {
 .slds-form-element__label {
     font-size: medium;
 }
+
+.main-screen .row {
+    margin-bottom: 8px !important;
+}

@@ -18,12 +18,16 @@
                 </div>
             </div>
         </div>
-        <?php if (AuthComponent::user() && $isUserAllowed) : ?>
+        <?php if (AuthComponent::user() && $isUserAllowed || $this->view === "profile") : ?>
             <div class="slds-col slds-no-flex slds-align-bottom">
                 <div class="slds-button-group" role="group">
                     <?php echo implode($buttons) ?>
                 </div>
             </div>
+        <!--?php else :?>
+            <div>
+                <button type="button">Back</button>
+            </div>    -->
         <?php endif;?>
     </div>
 </div>

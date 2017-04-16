@@ -25,8 +25,7 @@
 					<span for="Degree" class="slds-form-element__label">Role</span>
 					<div class="slds-form-element__control read-only-view">
 						<span class="slds-form-element__static">
-							<?php echo h($user['Role']['name']); ?>
-						</span>
+							<?php echo h($user['Role']['name']); ?></span>
 					</div>
 				</div>
 			</div>
@@ -57,6 +56,15 @@
 					<span for="Description" class="slds-form-element__label">Address</span>
 					<div class="slds-form-element__control read-only-view">
 						<span class="slds-form-element__static"><?php echo __($user['User']['address']); ?></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="slds-form-element slds-has-divider--bottom">
+					<span for="Degree" class="slds-form-element__label">GPA</span>
+					<div class="slds-form-element__control read-only-view">
+						<span class="slds-form-element__static">
+							<?php echo h($user['User']['gpa']); ?></span>
 					</div>
 				</div>
 			</div>

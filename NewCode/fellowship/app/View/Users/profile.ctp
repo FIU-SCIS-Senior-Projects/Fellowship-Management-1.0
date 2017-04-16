@@ -16,13 +16,17 @@
 	<?php echo $this->Form->input('id'); ?>
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 				<?php echo $this->Form->input('first_name', array("class" => "slds-input", 
 					"div" => array("class" => "slds-form-element__control"),"label" => array("class" => "slds-form-element__label"))); ?>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<?php echo $this->Form->input('last_name', array("class" => "slds-input", 
 					"div" => array("class" => "slds-form-element__control"),"label" => array("class" => "slds-form-element__label"))); ?>
+		</div>
+		<div class="col-md-4">
+			<?php echo $this->Form->input('gpa', array("class" => "slds-input", "type"=>"number", "step"=>"0.01", "min"=>"2.0", "max"=>"4.0",
+				"div" => array("class" => "slds-form-element__control"), "label" => array("class" => "slds-form-element__label", "text"=> "GPA"))); ?>
 		</div>
 	</div>
 	<div class="row">
