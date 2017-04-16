@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2017 at 08:30 PM
+-- Generation Time: Apr 16, 2017 at 09:28 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -120,9 +120,10 @@ INSERT INTO `elegibilities` (`id`, `name`) VALUES
 CREATE TABLE `fellowships` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(50) DEFAULT NULL,
-  `description` text,
+  `body` text,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
+  `description` text,
   `degree_id` int(11) DEFAULT NULL,
   `discipline_id` int(11) DEFAULT NULL,
   `elegibility_id` int(11) DEFAULT NULL,
@@ -133,23 +134,23 @@ CREATE TABLE `fellowships` (
 -- Dumping data for table `fellowships`
 --
 
-INSERT INTO `fellowships` (`id`, `title`, `description`, `created`, `modified`, `degree_id`, `discipline_id`, `elegibility_id`, `user_id`) VALUES
-(5, 'Donald Trump Fellowship $19500', 'Donald Trump Organization is providing this fellowship.', '2017-02-03 20:25:01', '2017-03-26 22:25:07', 1, 2, 2, 1),
-(9, 'NYU Partnership with FIU Fellowship', 'This fellowship is funded by NYU and FIU.', '2017-02-07 01:30:56', '2017-02-12 07:28:42', 2, 1, 2, 1),
-(12, 'FIU Fishbowl Fellowship', 'This Fishbowl Fellowship is funded by the Sea World.', '2017-02-12 08:44:16', '2017-02-12 08:44:16', 1, 3, 1, 1),
-(13, 'Marathon Runners Fellowship', 'This fellowship is worth $2.', '2017-02-12 08:46:01', '2017-02-12 08:46:01', 2, 3, 1, 1),
-(15, 'Construction Guild Fellowship', 'This fellowship is worth $4,500.', '2017-02-12 08:49:39', '2017-02-12 08:49:39', 3, 2, 2, 1),
-(16, 'Star of David Fellowship', 'This fellowship is worth $7,000.', '2017-02-12 08:50:23', '2017-02-12 08:50:23', 1, 1, 2, 1),
-(18, 'Automobile Manufacturer Fellowship', '$200,000', '2017-02-12 08:52:10', '2017-02-12 08:52:10', 2, 2, 1, 1),
-(20, 'Intel Fellowship', '$1,000', '2017-02-12 08:53:21', '2017-02-12 08:53:21', 3, 2, 1, 1),
-(21, 'Plant a Tree Foundation Fellowship', '$3000', '2017-02-13 02:24:41', '2017-02-13 02:24:41', 2, 1, 1, 1),
-(22, 'Plant Many Trees Fellowship', '$3000', '2017-02-13 04:13:36', '2017-02-13 04:13:36', 2, 1, 3, 1),
-(32, 'Fellowship 123', 'Fellowship 123', '2017-03-10 19:15:40', '2017-03-10 19:15:40', 3, 3, 3, 1),
-(33, 'Invalid Fellowship', 'Invalid', '2017-03-10 20:12:12', '2017-03-10 20:12:12', 1, 2, 3, 1),
-(34, 'Invalid2', 'Invalid2', '2017-03-10 20:52:36', '2017-03-10 20:52:36', 1, 2, 2, 1),
-(35, 'think of a new name', 'new name', '2017-03-19 21:01:44', '2017-03-19 21:01:44', 3, 1, 2, 1),
-(37, 'McJob2', 'Fellowship', '2017-03-26 18:01:59', '2017-03-26 18:02:16', 2, 1, 2, 1),
-(40, 'Heat Basketball Fellowship', 'Heat Basketball Fellowship', '2017-03-27 02:17:58', '2017-03-27 02:17:58', 1, 1, 1, 1);
+INSERT INTO `fellowships` (`id`, `title`, `body`, `created`, `modified`, `description`, `degree_id`, `discipline_id`, `elegibility_id`, `user_id`) VALUES
+(5, 'Donald Trump Fellowship $19500', 'Donald Trump Organization is providing this fellowship.', '2017-02-03 20:25:01', '2017-03-26 22:25:07', 'Donald Trump Organization is providing this fellowship.', 1, 2, 2, 1),
+(9, 'NYU Partnership with FIU Fellowship', 'This fellowship is funded by NYU and FIU.', '2017-02-07 01:30:56', '2017-02-12 07:28:42', 'This fellowship is funded by NYU and FIU.', 2, 1, 2, 1),
+(12, 'FIU Fishbowl Fellowship', 'This Fishbowl Fellowship is funded by the Sea World.', '2017-02-12 08:44:16', '2017-02-12 08:44:16', 'This Fishbowl Fellowship is funded by the Sea World.', 1, 3, 1, 1),
+(13, 'Marathon Runners Fellowship', 'This fellowship is worth $2.', '2017-02-12 08:46:01', '2017-02-12 08:46:01', 'This fellowship is worth $2.', 2, 3, 1, 1),
+(15, 'Construction Guild Fellowship', 'This fellowship is worth $4,500.', '2017-02-12 08:49:39', '2017-02-12 08:49:39', 'This fellowship is worth $4,500.', 3, 2, 2, 1),
+(16, 'Star of David Fellowship', 'This fellowship is worth $7,000.', '2017-02-12 08:50:23', '2017-02-12 08:50:23', 'This fellowship is worth $7,000.', 1, 1, 2, 1),
+(18, 'Automobile Manufacturer Fellowship', '$200,000', '2017-02-12 08:52:10', '2017-02-12 08:52:10', '$200,000', 2, 2, 1, 1),
+(20, 'Intel Fellowship', '$1,000', '2017-02-12 08:53:21', '2017-02-12 08:53:21', '$1,000', 3, 2, 1, 1),
+(21, 'Plant a Tree Foundation Fellowship', '$3000', '2017-02-13 02:24:41', '2017-02-13 02:24:41', '$3000', 2, 1, 1, 1),
+(22, 'Plant Many Trees Fellowship', '$3000', '2017-02-13 04:13:36', '2017-02-13 04:13:36', '$3000', 2, 1, 3, 1),
+(32, 'Fellowship 123', 'Fellowship 123', '2017-03-10 19:15:40', '2017-03-10 19:15:40', 'Fellowship 123', 3, 3, 3, 1),
+(33, 'Invalid Fellowship', 'Invalid', '2017-03-10 20:12:12', '2017-03-10 20:12:12', 'Invalid', 1, 2, 3, 1),
+(34, 'Invalid2', 'Invalid2', '2017-03-10 20:52:36', '2017-03-10 20:52:36', 'Invalid2', 1, 2, 2, 1),
+(35, 'think of a new name', 'new name', '2017-03-19 21:01:44', '2017-03-19 21:01:44', 'new name', 3, 1, 2, 1),
+(37, 'McJob2', 'Fellowship', '2017-03-26 18:01:59', '2017-03-26 18:02:16', 'Fellowship', 2, 1, 2, 1),
+(40, 'Heat Basketball Fellowship', 'Heat Basketball Fellowship', '2017-03-27 02:17:58', '2017-03-27 02:17:58', 'Heat Basketball Fellowship', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -179,13 +180,14 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
+  `role` varchar(20) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   `gpa` float NOT NULL DEFAULT '0',
+  `last_name` varchar(50) DEFAULT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   `address` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -194,14 +196,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `last_name`, `first_name`, `username`, `password`, `created`, `modified`, `gpa`, `role_id`, `address`) VALUES
-(1, '1', 'User', 'w', 'c56e35e413b4fb6aba43f15e8111c4966c737876', '2017-02-07 01:30:56', '2017-04-16 20:25:37', 2, 1, ''),
-(7, '3', 'User', 'f', '8ba299dfcc321932170f99f036da17ae5c6c58ee', '2017-02-07 01:30:56', '2017-04-16 20:25:58', 3.4, 2, ''),
-(9, '2', 'User', 'admin', 'b56b44a22e00e39a6c8206cdc5c54e11772bd14d', '2017-02-07 01:30:56', '2017-04-16 20:25:49', 0, 1, ''),
-(14, '4', 'User', 'john', '711da1031d6ee94c84b37d8f0205d284afb8a5e5', '2017-02-07 01:30:56', '2017-04-16 20:26:07', 2.1, 2, ''),
-(18, '5', 'User', 'awd2', '346e14459f46af9f6bae7a47c802eef7c19c7e55', '2017-02-07 01:30:56', '2017-04-16 20:26:39', 2.5, 3, ''),
-(35, '6', 'User', 'fth', 'e911de218640f73955039bf77d74c0fb29581f4b', '2017-02-07 01:30:56', '2017-04-16 20:26:27', 3, 3, ''),
-(36, 'Morales', 'Alfredo', 'amorales', 'bc70a4c899ebe428d68524b8100c1de76d2637ff', '2017-04-16 20:21:33', '2017-04-16 20:25:19', 3.25, 1, '123 SW 123 Street\r\nMiami FL 33125');
+INSERT INTO `users` (`id`, `role`, `username`, `password`, `created`, `modified`, `gpa`, `last_name`, `first_name`, `role_id`, `address`) VALUES
+(1, 'admin', 'w', 'c56e35e413b4fb6aba43f15e8111c4966c737876', '2017-02-07 01:30:56', '2017-04-16 20:25:37', 2, '1', 'User', 1, ''),
+(7, 'fellow', 'f', '8ba299dfcc321932170f99f036da17ae5c6c58ee', '2017-02-07 01:30:56', '2017-04-16 20:25:58', 3.4, '3', 'User', 2, ''),
+(9, 'admin', 'admin', 'b56b44a22e00e39a6c8206cdc5c54e11772bd14d', '2017-02-07 01:30:56', '2017-04-16 20:25:49', 0, '2', 'User', 1, ''),
+(14, 'fellow', 'john', '711da1031d6ee94c84b37d8f0205d284afb8a5e5', '2017-02-07 01:30:56', '2017-04-16 20:26:07', 2.1, '4', 'User', 2, ''),
+(18, 'regular', 'awd2', '346e14459f46af9f6bae7a47c802eef7c19c7e55', '2017-02-07 01:30:56', '2017-04-16 20:26:39', 2.5, '5', 'User', 3, ''),
+(35, 'regular', 'fth', 'e911de218640f73955039bf77d74c0fb29581f4b', '2017-02-07 01:30:56', '2017-04-16 20:26:27', 3, '6', 'User', 3, ''),
+(42, 'regular', 'amorales', '$2y$10$aZYrXprDl8h3BfgoEnngGujjiLdH8K4k2if0klGXxl7hCK.tgt/TO', NULL, NULL, 3.25, 'Morales', 'Alfredo', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -278,7 +280,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `users_fellowships`
 --
