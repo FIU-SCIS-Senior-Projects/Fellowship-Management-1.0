@@ -372,3 +372,17 @@ ul.slds-lookup__list {
 .main-screen .row {
     margin-bottom: 8px !important;
 }
+
+a:hover.navbar-items{
+    background-color: transparent !important;
+    text-decoration: underline !important;
+    color: #b6862c !important;
+}
+
+.dropdown.open>a:focus{
+    background-color: #eee !important;
+}
+
+.dropdown>a:focus{
+    background-color: transparent !important;
+}
