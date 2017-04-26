@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: my_fellowship
+-- Host: localhost    Database: test_my_fellowship
 -- ------------------------------------------------------
 -- Server version	5.7.14
 
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `my_fellowship`
+-- Current Database: `test_my_fellowship`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `my_fellowship` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `test_my_fellowship` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `my_fellowship`;
+USE `test_my_fellowship`;
 
 --
 -- Table structure for table `fellowships`
